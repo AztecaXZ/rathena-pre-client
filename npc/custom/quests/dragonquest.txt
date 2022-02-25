@@ -1,0 +1,157 @@
+//(=========================================================)
+//(       (c)2010  DemonFire Selectro Ro Beta               )
+//(       ______  __    __                                  )
+//(      /\  _  \/\ \__/\ \                                 )
+//(    __\ \ \_\ \ \  _\ \ \___      __    ___      __      )
+//(  /'__`\ \  __ \ \ \/\ \  _ `\  /'__`\/' _ `\  /'__`\    )
+//( /\  __/\ \ \/\ \ \ \_\ \ \ \ \/\  __//\ \/\ \/\ \_\ \_  )
+//( \ \____\\ \_\ \_\ \__\\ \_\ \_\ \____\ \_\ \_\ \__/ \_\ )
+//(  \/____/ \/_/\/_/\/__/ \/_/\/_/\/____/\/_/\/_/\/__/\/_/ )
+//(                                                         )
+//(            __ [s] [c] [r] [i] [p] [t] [s] __            )
+//(   _   _   _   _   _   _   _     _   _   _   _   _   _   )
+//(  / \ / \ / \ / \ / \ / \ / \   / \ / \ / \ / \ / \ / \  )
+//( ( e | s | p | a | ñ | o | l ) ( A | t | h | e | n | a ) )
+//(  \_/ \_/ \_/ \_/ \_/ \_/ \_/   \_/ \_/ \_/ \_/ \_/ \_/  )
+//(                                                         )
+//(       (c)2010  DemonFire Flow Ro Beta               )
+//(=======================Autor=============================)
+//(=====================DemonFire===========================)
+quiz_02,338,64,1	script	Armas Suprem Hiakri	919,{
+	set @JMROW$,"[^0065Alas^000000]";
+	
+// [==================================================]
+// [===========           Hiakri          ===========]
+// [==================================================]
+
+
+	mes @JMROW$;
+	mes "Hola ^5555FF" + strcharinfo(0) + "^000000!... Espero Que Estes Disfrutando de Nuestro Servidor Flow Ro";
+	mes "Tengo Algunas Quest Para Ti.";
+	mes "¿Deceas verlas?";
+	set @item, select("Armas Hikary Suprem", "Salir");
+	switch (@item)
+	{
+		case 1: goto wings1;
+		case 2: goto Msalir;
+	}
+
+wings1:
+	mes @JMROW$;
+	mes "Estas wings dan diferentes bonus:";
+	mes "^000088No te confies todas son poderosas^000000:";
+	set @item, select("Hikari Ultima Spear", "Hikari Mystical Bow", "Hikari Blast Cart", "Hikari Lunar Staff", "Hikari Mortal Chair");
+	switch (@item)
+	{
+		case 1: goto wings4_1;
+		case 2: goto wings4_2;
+		case 3: goto wings4_3;
+		case 4: goto wings4_4;
+		case 5: goto wings4_5;
+	}
+wings4_1:
+	next;
+	mes "Necesitaras esto:";
+	mes "500 treasure box";
+        mes "1 Ripple";
+	mes "1 Omen of Tempest";
+	next;
+	if(countitem(7444)<500)goto falta;
+	if(countitem(7090)<1)goto falta;
+	if(countitem(7089)<1)goto falta;
+	next;
+	mes "Tienes todo, asi que aqui esta tu item";
+	next;
+	delitem 7444,500;
+	delitem 7090,1;
+	delitem 7089,1;
+	getitem 1478,1;
+	close;
+	npctalk "~ Editado para Flow Ro ~";
+	
+wings4_2:
+	next;
+	mes "Necesitaras esto:";
+	mes "500 treasure box";
+        mes "1 Drifting Air";
+	mes "1 Snow Crystal";
+	next;
+	if(countitem(7444)<500)goto falta;
+	if(countitem(7092)<1)goto falta;
+	if(countitem(7088)<1)goto falta;
+	next;
+	mes "Tienes todo, asi que aqui esta tu item";
+	next;
+	delitem 7444,500;
+	delitem 7092,1;
+	delitem 7088,1;
+	getitem 1734,1;
+	close;
+	npctalk "~ Editado para Flow RO ~";
+	
+wings4_3:
+	next;
+	mes "Necesitaras esto:";
+	mes "500 treasure box";
+        mes "1 Omen of Tempest";
+	mes "1 Snow Crystal";
+	next;
+	if(countitem(7444)<500)goto falta;
+	if(countitem(7089)<100)goto falta;
+	if(countitem(7088)<100)goto falta;
+	next;
+	mes "Tienes todo, asi que aqui esta tu item";
+	next;
+	delitem 7444,10;
+	delitem 7089,1;
+	delitem 7088,1;
+	getitem 14035,1;
+	close;
+	npctalk "~ Editado para Flow RO ~";
+	
+wings4_4:
+	next;
+	mes "Necesitaras esto:";
+	mes "500 Treasure box";
+        mes "1 Rippe";
+	mes "1 Billow";
+	next;
+	if(countitem(7444)<500)goto falta;
+	if(countitem(7090)<1)goto falta;
+	if(countitem(7091)<10)goto falta;
+	next;
+	mes "Tienes todo, asi que aqui esta tu item";
+	next;
+	delitem 7444,500;
+	delitem 7090,1;
+	delitem 7091,1;
+	getitem 1649,1;
+	close;
+	npctalk "~ NPC hecho por Sun RO ~";
+	
+wings4_5:
+	next;
+	mes "Necesitaras esto:";
+	mes "500 treasure box";
+        mes "Ripple";
+	mes "Omen Of Temstest";
+	next;
+	if(countitem(7444)<1)goto falta;
+	if(countitem(7090)<100)goto falta;
+	if(countitem(7089)<1)goto falta;
+	next;
+	mes "Tienes todo, asi que aqui esta tu item";
+	next;
+	delitem 7444,500;
+	delitem 7090,1;
+	delitem 7089,1;
+	getitem 1534,1;
+	close;
+Msalir:
+	mes "...";
+	close;
+falta:
+	mes "Aun no tienes lo necesario vuelve cuando lo tengas..";
+	close;
+	npctalk "~ NPC hecho por Jack ~";
+}

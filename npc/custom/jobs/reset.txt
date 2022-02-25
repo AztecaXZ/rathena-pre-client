@@ -1,0 +1,39 @@
+prontera,164,172,3	script	Niña Reset	703,{
+	mes "[Niña Reset]";
+	mes "Bienvenido. Yo puedo resetear";
+	mes "algunos atributos de tus.";
+	mes "personajes. ¿Que reset deseas hacer?";
+	next;
+	menu "^FF3355Resetear Skills",L0,"Resetear Stats",L1,"Resetear Todo^000000",L2,"Ninguno",LEnd;
+	
+	L0:
+		mes "[Niña Reset]";
+		if (Zeny < 100000) goto NeedZenys;
+		mes "Bien!! Has elegido resetear skills,ahi tienes!";
+		set Zeny,zeny-10000;
+		ResetSkill;
+		close;
+	L1:
+		mes "[Niña Reset]";
+		if (Zeny < 100000) goto NeedZenys;
+		mes "Bien!! Has elegido resetear stats,ahi tienes!";
+		set Zeny,zeny-10000;
+		ResetStatus;
+		close;
+	L2:
+		mes "[Niña Reset]";
+		if (Zeny < 150000) goto NeedZenys;
+		mes "ABien!! Has elegido resetear Todo,ahi tienes!";
+		set Zeny,zeny-18000;
+		ResetSkill;
+		ResetStatus;
+		close;
+
+		NeedZenys:
+			mes "Lo siento, No tienes suficiente dinero.";
+			close;
+	LEnd:
+		mes "Bien. Vuelve cuando necesites de mis servicios.";
+		close;	
+}
+payon,162,223,5	duplicate(Niña Reset)	Niña Reset#1	703

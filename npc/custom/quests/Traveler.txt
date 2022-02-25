@@ -1,0 +1,47 @@
+// $Id: kaho_balmung.txt,v 1.1.1.1 2004/09/10 17:26:46 MagicalTux Exp $
+//-------------------- 'Balmung & Lord Kaho's Horns' Quest --------------------
+// Warning! Don't use this quest 8)
+
+quiz_02,340,62,4	script	Traveler	103,,{
+	mes "[Traveler]";
+	mes "Welcome to prontera, I am the Traveler in charge of the royal quest.";
+	next;
+
+	mes "[Traveler]";
+	mes "There are too quests please chose the one you must like.";
+	next;
+
+	mes "[Traveler]";
+	mes "The Traveler quest consist of the next items:";
+	mes "30 Mother's Nightmare";
+	mes "30 Tiger's Footskin";
+	mes "30 Heroic Emblem";
+	mes "1  Snow Crystal";
+	mes "30 Broken Pharaoh Emblem";
+	mes "1  Emblem of the Sun God";
+	mes "100,000,000z";
+	next;
+	if(countitem(7020)<30 || countitem(1030)<30 || countitem(968)<30 || countitem(7088)<1
+		|| countitem(7113)<30 || countitem(7086)<1 || Zeny<100000000) goto NoItems;
+	delitem 7020,30;
+	delitem 1030,30;
+	delitem 968,30;
+	delitem 7088,1;
+	delitem 7113,30;
+	delitem 7086,1;
+	set Zeny,Zeny-100000000;
+	mes "[Traveler]";
+	mes "I see you already have all the items you need.";
+	mes "nice work.";
+	getitem 26114,1;
+	close;
+Lend:
+	mes "[Traveler]";
+	mes "Have a nice day.";
+	close;
+NoItems:
+	mes "[Traveler]";
+	mes "Sorry you don't have all the items or zeny I need.";
+	mes "Come back when you have them all";
+	close;
+}

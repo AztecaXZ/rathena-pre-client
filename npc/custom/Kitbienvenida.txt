@@ -1,0 +1,20 @@
+-	script	Yp8X4UbP	-1,{
+	
+	
+OnPCLoginEvent:
+	// Nueva Cuenta
+	if(#NoNew7T){
+		end;
+		}
+	announce "Bienvenid@ a Flow-Ro "+strcharinfo(0)+".",bc_all;
+	dispbottom "Aquí tienes tu Set de bienvenida :D!";
+	getitem 4142,1;
+	getitem 26072,1;
+	getitem 20012,1;
+	getitem 4305,1;
+	getitem 2528,1;
+	getitem 2424,1;
+	getitem 2365,1;
+	set #NoNew7T,1;
+	end;
+}

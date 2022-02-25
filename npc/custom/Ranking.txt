@@ -1,0 +1,30 @@
+-	script	#PK_Rank	-1,{
+OnPCDieEvent:
+set PK_LOSE,PK_LOSE + 1;
+set PK_WIN,PK_WIN - 1;
+set $@victim_name$,strcharinfo(0);
+end;
+
+OnPCKillEvent:
+set PK_WIN,PK_WIN + 1;
+announce ""+strcharinfo(0)+" ha matado a "+$@victim_name$+"!!",bc_all,"0x00FA9A";
+end;
+
+if(PK_WIN == 1000) {getitem 2629,1;}
+if(PK_WIN == 2000) {getitem 2541,1;}
+if(PK_WIN == 5000) {getitem 2383,1;}
+end;
+}
+
+prontera.gat,164,174,4	script	PK Status	953,{
+
+mes "[PK Status]";
+mes "Hola ^400080"+strcharinfo(O)+"^000000 estos son tus status actuales:";
+mes "^0000FFVictorias^000000: "+PK_WIN+".";
+mes "^FF0000Muertes^000000: "+PK_LOSE+".";
+next;
+mes "Recuerda que al llegar a 1000 puntos pk ganas un meg";
+mes "Al llegar a 2000 ganas un Aesprika";
+mes "y al llegar a 5000 ganas un brynhild";
+close;
+}

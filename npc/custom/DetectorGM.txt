@@ -1,0 +1,32 @@
+prontera,147,177,4	script	Detector de GM's	497,{
+	mes "^0000FF[Administradores]^000000";
+	if(isloggedin(2000003) == 0){
+	mes "Admin xRichix: ^FF0000(Offline)^000000.";
+	}else{
+	mes "Admin xRichix: ^00FF00(Online)^000000.";
+	}
+next;
+	mes "^0000FF[Game Masters]^000000";
+
+	if(isloggedin(2000002) == 0){
+		mes "Reed: ^FF0000(Offline)^000000.";
+	}else{
+		mes "Reed: ^00FF00(Online)^000000.";
+	}
+	if(isloggedin(2000001) == 0){
+		mes "SubAdmin MasterBow: ^FF0000(Offline)^000000.";
+	}else{
+		mes "SubAdmin MasterBow: ^00FF00(Online)^000000.";
+	}
+	if(isloggedin(2000004) == 0){
+		mes "The ArmyFLow: ^FF0000(Offline)^000000.";
+	}else{
+		mes "The ArmyFlow: ^00FF00(Online)^000000.";
+	}
+close;
+   OnInit:
+waitingroom "Detector De Gms",0;
+end;
+}
+
+}

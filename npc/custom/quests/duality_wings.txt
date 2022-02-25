@@ -1,0 +1,47 @@
+// $Id: kaho_balmung.txt,v 1.1.1.1 2004/09/10 17:26:46 MagicalTux Exp $
+//-------------------- 'Balmung & Lord Kaho's Horns' Quest --------------------
+// Warning! Don't use this quest 8)
+
+quiz_02,353,64,4	script	duality wings	86,{
+	mes "[duality wings]";
+	mes "Welcome to prontera, I am the duality in charge of the royal quest.";
+	next;
+
+	mes "[duality wings]";
+	mes "There are too quests please chose the one you must like.";
+	next;
+
+	mes "[duality wings]";
+	mes "The duality consist of the next items:";
+	mes "100 Moth Wings";
+	mes "100 Giant Butterfly Wing";
+	mes "100 Little Evil Wing";
+	mes "100 Feather";
+	mes "100 Soft Feather";
+	mes "1 Billow";
+	mes "100,000,000z";
+	next;
+	if(countitem(1058)<100 || countitem(7168)<100 || countitem(1039)<100 || countitem(949)<100
+		|| countitem(7063)<100 || countitem(7091)<1 || Zeny<100000000) goto NoItems;
+	delitem 1058,100;
+	delitem 7168,100;
+	delitem 1039,100;
+	delitem 949,100;
+	delitem 7063,100;
+	delitem 7091,1;
+	set Zeny,Zeny-100000000;
+	mes "[duality wings]";
+	mes "I see you already have all the items you need.";
+	mes "nice work.";
+	getitem 26102,1;
+	close;
+Lend:
+	mes "[duality wings]";
+	mes "Have a nice day.";
+	close;
+NoItems:
+	mes "[duality wings]";
+	mes "Sorry you don't have all the items or zeny I need.";
+	mes "Come back when you have them all";
+	close;
+}

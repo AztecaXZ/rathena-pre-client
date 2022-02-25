@@ -1,0 +1,84 @@
+//(=========================================================)
+//(       (c)2010  DemonFire Selectro Ro Beta               )
+//(       ______  __    __                                  )
+//(      /\  _  \/\ \__/\ \                                 )
+//(    __\ \ \_\ \ \  _\ \ \___      __    ___      __      )
+//(  /'__`\ \  __ \ \ \/\ \  _ `\  /'__`\/' _ `\  /'__`\    )
+//( /\  __/\ \ \/\ \ \ \_\ \ \ \ \/\  __//\ \/\ \/\ \_\ \_  )
+//( \ \____\\ \_\ \_\ \__\\ \_\ \_\ \____\ \_\ \_\ \__/ \_\ )
+//(  \/____/ \/_/\/_/\/__/ \/_/\/_/\/____/\/_/\/_/\/__/\/_/ )
+//(                                                         )
+//(            __ [s] [c] [r] [i] [p] [t] [s] __            )
+//(   _   _   _   _   _   _   _     _   _   _   _   _   _   )
+//(  / \ / \ / \ / \ / \ / \ / \   / \ / \ / \ / \ / \ / \  )
+//( ( e | s | p | a | ñ | o | l ) ( A | t | h | e | n | a ) )
+//(  \_/ \_/ \_/ \_/ \_/ \_/ \_/   \_/ \_/ \_/ \_/ \_/ \_/  )
+//(                                                         )
+//(       (c)2010  DemonFire Flow Ro Beta               )
+//(=======================Autor=============================)
+//(=====================DemonFire===========================)
+quiz_02,38,391,1	script	Valkyrie armor	443,{
+	set @JMROW$,"[^0065Alas^000000]";
+	
+// [==================================================]
+// [===========           Hiakri          ===========]
+// [==================================================]
+
+
+	mes @JMROW$;
+	mes "Hola ^5555FF" + strcharinfo(0) + "^000000!... Espero Que Estes Disfrutando de Nuestro Servidor Flow Ro";
+	mes "Tengo una Quest Para Ti.";
+	mes "¿Deceas verlas?";
+	set @item, select("quest del Valkyrie armor", "Salir");
+	switch (@item)
+	{
+		case 1: goto wings1;
+		case 2: goto Msalir;
+	}
+
+wings1:
+	mes @JMROW$;
+	mes "Quest Armor:";
+	mes "^000088No te confies es poderosa^000000:";
+	set @item, select("Valkyrie armor");
+	switch (@item)
+	{
+		case 6: goto wings4_6;
+	}
+	
+wings4_6:
+	next;
+	mes "Valkyrie armor constituido por los elementos siguientes:";
+	mes "4 Ripple";
+	mes "4 Silver Ornament";
+	mes "100 Three-Headed Dragon's Head";
+	mes "100 Treasure Box";
+	mes "1 Poring Coin ";
+	mes "300,000,000z";
+	next;
+	if(countitem(7090)<4)goto falta;
+	if(countitem(7077)<4)goto falta;
+	if(countitem(7443)<100)goto falta;
+	if(countitem(7444)<100)goto falta;
+	if(countitem(7539)<1)goto falta;
+	if(Zeny<300000000) goto NoItems;
+	next;
+	mes "Tienes todo, asi que aqui esta tu item";
+	next;
+	delitem 7090,4;
+	delitem 7077,4;
+	delitem 7443,100;
+	delitem 7444,100;
+	delitem 7539,1;
+	set Zeny,Zeny-300000000;
+	getitem 2357,1;
+	close;
+
+Msalir:
+	mes "...";
+	close;
+falta:
+	mes "Aun no tienes lo necesario vuelve cuando lo tengas..";
+	close;
+	npctalk "~ NPC hecho por Flow Ro ~";
+}

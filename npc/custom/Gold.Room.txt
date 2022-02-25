@@ -1,0 +1,149 @@
+//===== eAthena Script ======================================= 
+//= Gold Room
+//===== By: ================================================== 
+//= WanMan or Katazui
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= eAthena 7.15 +
+//===== Description: ========================================= 
+//= Gold Room
+//===== Additional Comments: ================================= 
+//= Why won't you see for your self? GO TO
+//= http://www.eathena.ws/board/index.php?showtopic=245515
+//============================================================
+prontera,145,158,1	script	Gold Room	4_m_yuri,{
+	input @player$;
+	mes "[Gold Room]";
+	mes "Hey, Hey! You wonder why I am so Rich?!";
+	mes "Well, that because I found this place called the Gold Room";
+	mes "OMG! There's 10!";
+	mes "The 1x is free";
+	mes "But the others you have to pay Gold.";
+	mes "2x is 2000 Gold, 3x is 3000 Gold and Soon On...";
+	mes "What you have to pay? Well it drops MORE Times the GOLD!";
+	mes "So, which Gold Room would you like to go too?";
+	menu "1x",1,"2x",2,"3x",3,"4x",4,"5x",5,"6x",6,"7x",7,"8x",8,"9x",9,"10x",10;
+		1:
+		mes "[Gold Room]";
+		mes "Have Fun!";
+		next;
+		warp "pvp_y_1-1";
+		end;
+		2:
+		if (countitem(969)>=2000) ) goto 2_;
+		mes "[Gold Room]";
+		mes "Ha! You don't have enough!";
+		atcommand strcharinfo(0)+":@nuke "+@player$
+		npctalk "Gold Room: Lmfao! Laugh and point at "+@player$+";
+			2_:
+			mes "[Gold Room]";
+			mes "Have Fun!";
+			next;
+			warp "pvp_y_2-1";
+			end;
+		3:
+		if (countitem(969)>=3000) ) goto 3_;
+		mes "[Gold Room]";
+		mes "Ha! You don't have enough!";
+		atcommand strcharinfo(0)+":@nuke "+@player$
+		npctalk "Gold Room: Lmfao! Laugh and point at "+@player$+";
+			3_:
+			mes "[Gold Room]";
+			mes "Have Fun!";
+			next;
+			warp "pvp_y_3-1";
+			end;
+		4:
+		if (countitem(969)>=4000) ) goto 4_;
+		mes "[Gold Room]";
+		mes "Ha! You don't have enough!";
+		atcommand strcharinfo(0)+":@nuke "+@player$
+		npctalk "Gold Room: Lmfao! Laugh and point at "+@player$+";
+			4_:
+			mes "[Gold Room]";
+			mes "Have Fun!";
+			next;
+			warp "pvp_y_4-1";
+			end;
+		5:
+		if (countitem(969)>=5000) ) goto 5_;
+		mes "[Gold Room]";
+		mes "Ha! You don't have enough!";
+		atcommand strcharinfo(0)+":@nuke "+@player$
+		npctalk "Gold Room: Lmfao! Laugh and point at "+@player$+";
+			5_:
+			mes "[Gold Room]";
+			mes "Have Fun!";
+			next;
+			warp "pvp_y_5-1";
+			end;
+		6:
+		if (countitem(969)>=6000) ) goto 6_;
+		mes "[Gold Room]";
+		mes "Ha! You don't have enough!";
+		atcommand strcharinfo(0)+":@nuke "+@player$
+		npctalk "Gold Room: Lmfao! Laugh and point at "+@player$+";
+			6_:
+			mes "[Gold Room]";
+			mes "Have Fun!";
+			next;
+			warp "pvp_y_6-1";
+			end;
+		7:
+		if (countitem(969)>=7000) ) goto 7_;
+		mes "[Gold Room]";
+		mes "Ha! You don't have enough!";
+		atcommand strcharinfo(0)+":@nuke "+@player$
+		npctalk "Gold Room: Lmfao! Laugh and point at "+@player$+";
+			7_:
+			mes "[Gold Room]";
+			mes "Have Fun!";
+			next;
+			warp "pvp_y_7-1";
+			end;
+		8:
+		if (countitem(969)>=8000) ) goto 8_;
+		mes "[Gold Room]";
+		mes "Ha! You don't have enough!";
+		atcommand strcharinfo(0)+":@nuke "+@player$
+		npctalk "Gold Room: Lmfao! Laugh and point at "+@player$+";
+			8_:
+			mes "[Gold Room]";
+			mes "Have Fun!";
+			next;
+			warp "pvp_y_8-1";
+			end;
+		9:
+		if (countitem(969)>=9000) ) goto 9_;
+		mes "[Gold Room]";
+		mes "Ha! You don't have enough!";
+		atcommand strcharinfo(0)+":@nuke "+@player$
+		npctalk "Gold Room: Lmfao! Laugh and point at "+@player$+";
+			9_:
+			mes "[Gold Room]";
+			mes "Have Fun!";
+			next;
+			warp "pvp_y_1-5";
+			end;
+		10:
+		if (countitem(969)>=10000) ) goto 10_;
+		mes "[Gold Room]";
+		mes "Ha! You don't have enough!";
+		atcommand strcharinfo(0)+":@nuke "+@player$
+		npctalk "Gold Room: Lmfao! Laugh and point at "+@player$+";
+			10_:
+			mes "[Gold Room]";
+			mes "Have Fun!";
+			next;
+			warp "pvp_y_2-5";
+			end;
+
+
+
+bye:
+mes "[Gold Room]"; 
+mes "Bye";
+close;
+
+}

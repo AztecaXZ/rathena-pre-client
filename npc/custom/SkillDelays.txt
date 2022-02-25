@@ -1,0 +1,33 @@
+//-    shop    dynamicshop    -1,501:22
+louyang,226,97,6    script    Dynamic Shop    100,{
+    callshop "dynamicshop",1;
+    npcshopattach "dynamicshop";
+    end;
+    
+    OnBuyItem:
+        for ( set .@j, 0; .@j < getarraysize(.items); set .@j, .@j + 2 ) {
+            for ( set .@k, 0; .@k < getarraysize(@bought_nameid); set .@k, .@k + 1 ) {
+                if ( @bought_nameid[.@k] == .items[.@j] ) {
+                    if ( checkweight( @bought_nameid[.@k], @bought_quantity[.@k] ) ) {
+                        if ( countitem(.currency) < .items[.@j+1] || countitem(.currency) < ( .items[.@j+1] * @bought_quantity[.@k] ) )
+                            dispbottom "You don't have enough " +getitemname(.currency)+ " to purchase this item.";
+                        else {
+                            delitem .currency, .items[.@j+1] * @bought_quantity[.@k];
+                            getitem @bought_nameid[.@k], @bought_quantity[.@k];
+                        }
+                    } else dispbottom "You cannot carry out more items with you";
+                }
+            }
+        }
+        deletearray @bought_quantity, getarraysize(@bought_quantity);
+        deletearray @bought_nameid, getarraysize(@bought_nameid);
+        end;
+
+    OnInit:
+        set .currency, 3100; // Credit is used to buy items
+        setarray .items, 2357,700,2524,1500,2421,500,2115,500,2410,1500,2647,500,3004,1500,3019,1500,5135,1500,3665,1500,3666,1500,3667,1500,3668,1500; // Usage : <item id>,<price>
+        npcshopitem "dynamicshop",0,0;
+        for ( set .@i, 0; .@i < getarraysize(.items); set .@i, .@i + 2 )
+            npcshopadditem "dynamicshop",.items[.@i],.items[.@i+1];
+        end;
+}

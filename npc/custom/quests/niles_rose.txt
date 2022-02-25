@@ -1,0 +1,45 @@
+// $Id: kaho_balmung.txt,v 1.1.1.1 2004/09/10 17:26:46 MagicalTux Exp $
+//-------------------- 'Balmung & Lord Kaho's Horns' Quest --------------------
+// Warning! Don't use this quest 8)
+
+quiz_02,338,64,4	script	 niles rose	94,{
+	mes "[niles rose]";
+	mes "Quest de los niles rose esta anillo da 5 all es muy buena.";
+	next;
+
+	mes "[niles rose]";
+	mes "There are too quests please chose the one you must like.";
+	next;
+
+	mes "[niles rose]";
+	mes "The niles rose consist of the next items:";
+	mes "10 Black Dyestuffs";
+	mes "10 Darkgreen Dyestuffs";
+	mes "10 Lemon Dyestuffs";
+	mes "10 Orange Dyestuffs";
+	mes "5 Fire Dragon Scale";
+	mes "100,000,000z";
+	next;
+	if(countitem(983)<10 || countitem(979)<10 || countitem(976)<10 || countitem(980)<10
+		|| countitem(7451)<5 || Zeny<100000000) goto NoItems;
+	delitem 983,10;
+	delitem 979,10;
+	delitem 976,10;
+	delitem 980,10;
+	delitem 7451,5;
+	set Zeny,Zeny-100000000;
+	mes "[niles rose]";
+	mes "I see you already have all the items you need.";
+	mes "nice work.";
+	getitem 2658,1;
+	close;
+Lend:
+	mes "[niles rose]";
+	mes "Have a nice day.";
+	close;
+NoItems:
+	mes "[niles rose]";
+	mes "Sorry you don't have all the items or zeny I need.";
+	mes "Come back when you have them all";
+	close;
+}

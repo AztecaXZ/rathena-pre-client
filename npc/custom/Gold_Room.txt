@@ -1,0 +1,121 @@
+//*********************************************************************************************************************************************************************************
+//*********************************************************************************************************************************************************************************
+//***-- Script by :	
+//***-- Syllabear
+//***
+//*********************************************************************************************************************************************************************************
+//*********************************************************************************************************************************************************************************
+//***-- Messages :		
+//***-- I will do my best to help you 
+//***-- More Details ? PM Me 
+//***
+//*********************************************************************************************************************************************************************************
+//***
+//*********************************************************************************************************************************************************************************
+//***Although these scripts might not suit or follow with what you have requested completely. But i still wish you can give it a try before reject the works.
+//***
+//*********************************************************************************************************************************************************************************
+
+
+//-------------------------MONSTER DATABASE [ REPLACE it in Your MOB_DB.txt ]  --------------------------------------------------------------------
+
+//1852,G_EM_ANGELING,Angeling,Angeling,99,120,0,0,0,1,60,71,100,99,1,17,80,80,126,20,10,12,0,8,66,0x37B5,300,1288,288,384,0,0,0,0,0,0,969,5000,969,10000,969,8000,969,1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+//1853,G_EM_DEVILING,Deviling,Deviling,99,120,0,0,0,1,60,71,100,99,1,17,80,80,126,20,10,12,0,8,66,0x37B5,300,1288,288,384,0,0,0,0,0,0,7444,5000,7444,10000,7444,5000,969,10000,969,5000,0,0,0,0,0,0,0,0,0,0,0,0
+
+
+
+//-------------------------NPC [ Warper + Exchanger  ]  --------------------------------------------------------------------
+
+prontera.gat,164,149,3	script	Gold Room Manager	861,{
+	mes "[ Gold Room Manager ]";
+	mes "Hello, ";
+	mes "How may i serve for you ?";
+	mes "I can warp you to a Gold Mine.";
+	mes "Would you like to go there try to get some gold ?";
+	mes "You could be get rich if you lucky enough.";
+	next;
+	switch(select("Warp Me There:Not Now:Exchange Coin")) {
+		Case 1:
+			mes "[ Gold Room Manager ]";	
+			mes "So you have decide to go there.";
+			mes "A wise decision.";	
+			mes "i will warp you to there at a instant .^^..";
+			next;
+			mes "[ Gold Room Manager ]";	
+			mes "See ya.";
+			close2;			
+			warp "ordeal_1-1.gat",0,0; 	
+			end;
+		Case 2:
+			mes "[ Gold Room Manager ]";	
+			mes "Owh....";
+			mes "Nevermind..since it is your decision.";
+			mes "It is all up to you.";
+			mes "Come back to me if you changed your mind.";
+			close;
+		Case 3:
+			mes "[ Gold Room Manager ]";	
+			mes "After a while in Gold Room, ";
+			mes "It seem that you have collect alot^008800 gold or treasure box.^000000";
+			mes "Do you wish to change it into ";
+			mes "^0000FFHollow Coin^000000?";
+			next;
+			switch(select("Yes,i wan to exchange it:Not yet")) {
+			case 1:
+				mes "[ Gold Room Manager ]";	
+				mes "Currently : ";
+				mes "you have ";
+				mes "- "+countitem(969)+" x ^008800 Gold^000000";
+				mes "- "+countitem(7444)+" x ^008800 Treasure Box^000000";
+				next;
+				switch(select("Exchange Gold to Coin:Exchange Treasure Box to Coin")) {
+				Case 1:
+				mes "[ Gold Room Manager ]";	
+				if(countitem(969)<5000){
+				mes "You dont have enough gold with you. ^^";	
+				close;
+				}	
+				if(countitem(969)>5000){		
+				mes "Okay there you go. ^^";		
+				mes "5000 Gold has been changed to 1 Hollow Coin";	
+				delitem 969,5000;
+				getitem 20077,1;
+				close;
+				end;
+				}
+			Case 2:
+				mes "[ Gold Room Manager ]";	
+				if(countitem(7444)<5000){
+				mes "You dont have enough treasure box with you. ^^";	
+				close;
+				}	
+				if(countitem(969)>5000){	
+				mes "Okay there you go. ^^";		
+				mes "5000 Treasure Box has been changed to 1 Hollow Coin";	
+				delitem 7444,5000;
+				getitem 20077,1;
+				close;
+				end;
+				}
+			}
+		}
+	}
+}
+
+
+
+
+//-------------------------MONSTER SPAWN--------------------------------------------------------------------
+
+
+ordeal_1-1,0,0,0,0	monster	Gold Holder	1110,999,0,0,0
+ordeal_1-1,0,0,0,0	monster	Gold Holder	1110,999,0,0,0
+ordeal_1-1,0,0,0,0	monster	Gold Holder	1110,999,0,0,0
+ordeal_1-1,0,0,0,0	monster	Gold Holder	1110,999,0,0,0
+ordeal_1-1,0,0,0,0	monster	Gold Holder	1110,999,0,0,0
+ordeal_1-1,0,0,0,0	monster	Gold Holder	1110,999,0,0,0
+ordeal_1-1,0,0,0,0	monster	Gold Holder	1110,999,0,0,0
+
+
+
+

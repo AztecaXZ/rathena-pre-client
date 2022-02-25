@@ -1,0 +1,26 @@
+prontera.gat,151,183,3	script	Heal	435,{
+
+heal 1000000,1000000;
+skilleffect 29,0; // Increase Agi
+skilleffect 34,0; // Blessing
+sc_start 32,  600000, 10;  // Increase Agi
+sc_start 30,  600000, 10; // Blessing
+close;
+}
+
+morocc,154,97,5	duplicate(Heal)	Heal#h2-2	435
+ayothaya,155,111,5	duplicate(Heal)	Heal#h2-3	435
+geffen,127,65,5	duplicate(Heal)	Heal#h2-4	435
+umbala,94,162,5	duplicate(Heal)	Heal#h2-5	435
+payon,180,105,4	duplicate(Heal)	Heal#h2-6	435
+alberta,185,144,5	duplicate(Heal)	Heal#h2-7	435
+aldebaran,135,121,5	duplicate(Heal)	Heal#h2-8	435
+izlude,125,118,5	duplicate(Heal)	Heal#h2-9	435
+xmas,148,136,5	duplicate(Heal)	Heal#h2-10	435
+comodo,188,162,5	duplicate(Heal)	Heal#h2-11	435
+amatsu,200,80,5	duplicate(Heal)	Heal#h2-12	435
+gonryun,164,130,5	duplicate(Heal)	Heal#h2-13	435
+yuno,152,186,5	duplicate(Heal)	Heal#h2-14	435
+niflheim,188,180,5	duplicate(Heal)	Heal#h2-15	435
+louyang,225,103,5	duplicate(Heal)	Heal#h2-16	435
+payon,165,226,5	duplicate(Heal)	Heal#h2-17	435

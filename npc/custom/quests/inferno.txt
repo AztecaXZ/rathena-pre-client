@@ -1,0 +1,47 @@
+// $Id: kaho_balmung.txt,v 1.1.1.1 2004/09/10 17:26:46 MagicalTux Exp $
+//-------------------- 'Balmung & Lord Kaho's Horns' Quest --------------------
+// Warning! Don't use this quest 8)
+
+quiz_02,328,62,4	script	inferno	88,{
+	mes "[inferno]";
+	mes "Welcome to prontera, I am the inferno in charge of the royal quest.";
+	next;
+
+	mes "[inferno]";
+	mes "There are too quests please chose the one you must like.";
+	next;
+
+	mes "[inferno]";
+	mes "The inferno consist of the next items:";
+	mes "100 Moth Wings";
+	mes "100 Giant Butterfly Wing";
+	mes "100 Little Evil Wing";
+	mes "100 Feather";
+	mes "100 Soft Feather";
+	mes "1 vulcan wings";
+	mes "100,000,000z";
+	next;
+	if(countitem(1058)<100 || countitem(7168)<100 || countitem(1039)<100 || countitem(949)<100
+		|| countitem(7063)<100 || countitem(26075)<1 || Zeny<100000000) goto NoItems;
+	delitem 1058,100;
+	delitem 7168,100;
+	delitem 1039,100;
+	delitem 949,100;
+	delitem 7063,100;
+	delitem 26075,1;
+	set Zeny,Zeny-100000000;
+	mes "[inferno]";
+	mes "I see you already have all the items you need.";
+	mes "nice work.";
+	getitem 26081,1;
+	close;
+Lend:
+	mes "[inferno]";
+	mes "Have a nice day.";
+	close;
+NoItems:
+	mes "[inferno]";
+	mes "Sorry you don't have all the items or zeny I need.";
+	mes "Come back when you have them all";
+	close;
+}

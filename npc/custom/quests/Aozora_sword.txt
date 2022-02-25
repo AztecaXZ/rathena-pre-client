@@ -1,0 +1,38 @@
+// $Id: kaho_balmung.txt,v 1.1.1.1 2004/09/10 17:26:46 MagicalTux Exp $
+//-------------------- 'Balmung & Lord Kaho's Horns' Quest --------------------
+// Warning! Don't use this quest 8)
+
+quiz_02,340,64,4	script	 Aozora sword	92,{
+	mes "[Aozora sword]";
+	mes "Quest de los Aozora sword es muy buena.";
+	next;
+
+	mes "[Aozora sword]";
+	mes "There are too quests please chose the one you must like.";
+	next;
+
+	mes "[Aozora sword]";
+	mes "The Aozora sword consist of the next items:";
+	mes "500 Treasure Box";
+	mes "1 ripple";
+	mes "100,000,000z";
+	next;
+	if(countitem(7444)<500 || countitem(7090)<1 || Zeny<100000000) goto NoItems;
+	delitem 7444,500;
+	delitem 7090,1;
+	set Zeny,Zeny-100000000;
+	mes "[Aozora sword]";
+	mes "I see you already have all the items you need.";
+	mes "nice work.";
+	getitem 1624,1;
+	close;
+Lend:
+	mes "[Aozora sword]";
+	mes "Have a nice day.";
+	close;
+NoItems:
+	mes "[Aozora sword]";
+	mes "Sorry you don't have all the items or zeny I need.";
+	mes "Come back when you have them all";
+	close;
+}

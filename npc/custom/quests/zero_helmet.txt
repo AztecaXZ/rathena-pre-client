@@ -1,0 +1,47 @@
+// $Id: kaho_balmung.txt,v 1.1.1.1 2004/09/10 17:26:46 MagicalTux Exp $
+//-------------------- 'Balmung & Lord Kaho's Horns' Quest --------------------
+// Warning! Don't use this quest 8)
+
+quiz_02,349,62,4	script	zero_helmet	105,{
+	mes "[zero_helmet]";
+	mes "Welcome to prontera, I am the zero_helmet in charge of the royal quest.";
+	next;
+
+	mes "[zero_helmet]";
+	mes "There are too quests please chose the one you must like.";
+	next;
+
+	mes "[zero_helmet]";
+	mes "The zero quest consist of the next items:";
+	mes "20 Mother's Nightmare";
+	mes "20 Tiger's Footskin";
+	mes "20 Heroic Emblem";
+	mes "20 Hand of God";
+	mes "20 Broken Pharaoh Emblem";
+	mes "10 Valhalla's Flower";
+	mes "100,000,000z";
+	next;
+	if(countitem(7020)<20 || countitem(1030)<20 || countitem(968)<20 || countitem(1009)<20
+		|| countitem(7113)<20 || countitem(7510)<10 || Zeny<100000000) goto NoItems;
+	delitem 7020,20;
+	delitem 1030,20;
+	delitem 968,20;
+	delitem 1009,20;
+	delitem 7113,20;
+	delitem 7510,10;
+	set Zeny,Zeny-100000000;
+	mes "[Hokage]";
+	mes "I see you already have all the items you need.";
+	mes "nice work.";
+	getitem 26112,1;
+	close;
+Lend:
+	mes "[assassin]";
+	mes "Have a nice day.";
+	close;
+NoItems:
+	mes "[assassin]";
+	mes "Sorry you don't have all the items or zeny I need.";
+	mes "Come back when you have them all";
+	close;
+}

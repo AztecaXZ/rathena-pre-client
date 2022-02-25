@@ -1,0 +1,47 @@
+// $Id: kaho_balmung.txt,v 1.1.1.1 2004/09/10 17:26:46 MagicalTux Exp $
+//-------------------- 'Balmung & Lord Kaho's Horns' Quest --------------------
+// Warning! Don't use this quest 8)
+
+quiz_02,349,59,4	script	dragon_helm	100,{
+	mes "[dragon_helm]";
+	mes "Welcome to prontera, I am the dragon in charge of the royal quest.";
+	next;
+
+	mes "[dragon_helm]";
+	mes "There are too quests please chose the one you must like.";
+	next;
+
+	mes "[thanatos_helmet]";
+	mes "The dragon quest consist of the next items:";
+	mes "20 Mother's Nightmare";
+	mes "20 Tiger's Footskin";
+	mes "20 Heroic Emblem";
+	mes "20 Hand of God";
+	mes "20 Broken Pharaoh Emblem";
+	mes "1 Ripple";
+	mes "100,000,000z";
+	next;
+	if(countitem(7020)<20 || countitem(1030)<20 || countitem(968)<20 || countitem(1009)<20
+		|| countitem(7113)<20 || countitem(7090)<1 || Zeny<100000000) goto NoItems;
+	delitem 7020,20;
+	delitem 1030,20;
+	delitem 968,20;
+	delitem 1009,20;
+	delitem 7113,20;
+	delitem 7090,1;
+	set Zeny,Zeny-100000000;
+	mes "[dragon_helm]";
+	mes "I see you already have all the items you need.";
+	mes "nice work.";
+	getitem 26115,1;
+	close;
+Lend:
+	mes "[dragon_helm]";
+	mes "Have a nice day.";
+	close;
+NoItems:
+	mes "[dragon_helm]";
+	mes "Sorry you don't have all the items or zeny I need.";
+	mes "Come back when you have them all";
+	close;
+}

@@ -1,0 +1,117 @@
+-	script	KoE	-1,{
+OnInit:
+	disablenpc "The King Baby#KoE";
+	disablenpc "Exit#KoE";
+	bindatcmd "koe1", strnpcinfo(0)+"::OnCommand", 99,99;
+	end;
+OnCommand:
+	if ( compare( .@atcmd_parameters$, "on" ) ) goto L_start;
+	else if ( compare( .@atcmd_parameters$, "off" ) ) goto L_end;
+	else {
+		dispbottom "type - '@koe1 on' to start the event";
+		dispbottom "type - '@koe1 off' to end the event";
+	}
+	end;
+OnClock1700: // everyday 6pm starts
+L_start:
+	if ( .start ) end;
+	gvgon "guild_vs2";
+	announce "The King of Emperium Hill has begun!", bc_all;
+	.start = 1;
+	enablenpc "The King Baby#KoE";
+	disablenpc "Exit#KoE";
+	$bkoegid = 0;
+	donpcevent "::OnRevKoE";
+	maprespawnguildid "guild_vs2", $bkoegid, 7;
+	monster "guild_vs2",49,49,"EMPERIUM",1288,1,"KoE::OnEmpDead";
+	end;
+OnClock1800: // everyday 7pm ends
+L_end:
+	gvgoff "guild_vs2";
+	announce "The King of Emperium Hill is over!", bc_all;
+	.start = 0;
+	enablenpc "Exit#KoE";
+	disablenpc "The King Baby#KoE";
+	killmonsterall "guild_vs2";
+//	maprespawnguildid "guild_vs2", $bkoegid, 6;
+	end;
+OnEmpDead:
+	$bkoegid = getcharid(2);
+	announce "The current King of Emperium Hill is the ["+ strcharinfo(2) +"] guild.", bc_all;
+	donpcevent "::OnRevKoE";
+	maprespawnguildid "guild_vs2", $bkoegid, 6;
+	sleep 500;
+	if ( .start )
+		monster "guild_vs2",49,49,"EMPERIUM",1288,1,"KoE::OnEmpDead";
+	end;
+}
+
+// KoE Entrance
+prontera,139,175,4	script	The King Baby#KoE	722,{
+   mes "[The King Baby]";
+	if ( getcharid(2) == 0 ) {
+	mes "You must have a guild to participate in the ^FF0000King of Emperium Hill FlowRo^000000.";
+	close;
+}
+mes "I'm a new usher of Baby Koe.";
+	next;
+	if( !(eaclass()&(EAJL_3|EAJL_UPPER)) && BaseLevel<256 )
+		menu "Warp me to Novice Castles",M_WARP,"Cancel",-;
+
+	mes "[Cita]";
+	mes "I'm sorry, you can't enter the sacred Baby Koe place.";
+	emotion e_sry;
+	close;
+
+M_WARP:
+   mes "Hello.";
+   mes "Would you like to participate in the ^FF0000King of Emperium Hill FlowRo^000000?";
+	if ( select ( "Yes", "No" ) == 2 ) close;
+	switch( rand(1,4) ){
+       case 1:	warp "guild_vs2", 50, 88; end;
+       case 2:	warp "guild_vs2", 88, 50; end;
+       case 3:	warp "guild_vs2", 50, 11; end;
+       case 4:	warp "guild_vs2", 11, 50; end;
+}
+
+}
+
+
+// KoE Exit
+guild_vs2,49,56,5	script	Exit#KoE	51,{
+	mes "[Exit]";
+	mes "See ya.";
+	if ( getcharid(2) == $bkoegid )
+		getitem 3100, 700;
+		getitem 607, 200;
+		getitem 7227, 100;
+	close2;
+	warp "Save",0,0;
+	end;
+}
+
+// Flags
+guild_vs2,49,38,4	script	King of Emperium Hill#1::koe_flag	722,{
+	if ( !$bkoegid ) end;
+	mes "[King of Emperium Hill]";
+	mes "The Current King of Emperium Hill is the ["+ getguildname($bkoegid) +"] guild.";
+	close;
+OnRevKoE:
+	flagemblem $bkoegid;
+	end;
+}
+guild_vs2,61,49,6	duplicate(koe_flag)	King of Emperium Hill#2	722
+guild_vs2,38,49,2	duplicate(koe_flag)	King of Emperium Hill#3	722
+guild_vs2,49,61,0	duplicate(koe_flag)	King of Emperium Hill#4	722
+prontera,155,184,4	duplicate(koe_flag)	King of Emperium Hill#4	722
+
+guild_vs2	mapflag	nobranch
+guild_vs2	mapflag	nomemo
+guild_vs2	mapflag	nopenalty
+guild_vs2	mapflag	noreturn
+guild_vs2	mapflag	nosave	SavePoint
+guild_vs2	mapflag	noteleport
+guild_vs2	mapflag	nowarp
+guild_vs2	mapflag	nowarpto
+guild_vs2	mapflag	guildlock
+guild_vs2	mapflag	nocommand

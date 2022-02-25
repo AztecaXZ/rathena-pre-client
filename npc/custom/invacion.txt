@@ -1,0 +1,17 @@
+-	script	Sample	-1,{
+OnInit:
+setarray .Map$[0],"prontera","payon","izlude";
+setarray .MVP[0],1658,1502,1751,1312;
+end;
+
+OnMinute00:
+set .RandMap,rand( getarraysize( .Map$ ) );
+set .RandMVP,rand( getarraysize( .MVP ) );
+monster .Map$[ .RandMap ],0,0,"MVP Event",.MVP[ .RandMVP ],1,strnpcinfo(0)+"::OnKilled";
+announce "MVP Event : "+getmonsterinfo( .MVP[ .RandMVP ],0 )+" occur in "+.Map$[ .RandMap ]+" .",0;
+end;
+
+OnKilled:
+announce "MVP Event : End...MVP Died",0;
+end;
+}

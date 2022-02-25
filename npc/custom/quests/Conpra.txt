@@ -1,0 +1,187 @@
+//(=========================================================)
+//(       (c)2010  DemonFire Selectro Ro Beta               )
+//(       ______  __    __                                  )
+//(      /\  _  \/\ \__/\ \                                 )
+//(    __\ \ \_\ \ \  _\ \ \___      __    ___      __      )
+//(  /'__`\ \  __ \ \ \/\ \  _ `\  /'__`\/' _ `\  /'__`\    )
+//( /\  __/\ \ \/\ \ \ \_\ \ \ \ \/\  __//\ \/\ \/\ \_\ \_  )
+//( \ \____\\ \_\ \_\ \__\\ \_\ \_\ \____\ \_\ \_\ \__/ \_\ )
+//(  \/____/ \/_/\/_/\/__/ \/_/\/_/\/____/\/_/\/_/\/__/\/_/ )
+//(                                                         )
+//(            __ [s] [c] [r] [i] [p] [t] [s] __            )
+//(   _   _   _   _   _   _   _     _   _   _   _   _   _   )
+//(  / \ / \ / \ / \ / \ / \ / \   / \ / \ / \ / \ / \ / \  )
+//( ( e | s | p | a | ñ | o | l ) ( A | t | h | e | n | a ) )
+//(  \_/ \_/ \_/ \_/ \_/ \_/ \_/   \_/ \_/ \_/ \_/ \_/ \_/  )
+//(                                                         )
+//(       (c)2010  DemonFire Flow Ro Beta               )
+//(=======================Autor=============================)
+//(=====================DemonFire===========================)
+prontera,147,166,5	script	compra con Credit	619,{
+	set @JMROW$,"[^0065Alas^000000]";
+	
+// [==================================================]
+// [===========           Hiakri          ===========]
+// [==================================================]
+
+
+	mes @JMROW$;
+	mes "Hola ^5555FF" + strcharinfo(0) + "^000000!... Espero Que Estes Disfrutando de Nuestro Servidor Flow Ro";
+	mes "Tengo Algunas item de ventas Para Ti.";
+	mes "¿Deceas verlas?";
+	set @item, select("item item para ti", "Salir");
+	switch (@item)
+	{
+		case 1: goto wings1;
+		case 2: goto Msalir;
+	}
+
+wings1:
+	mes @JMROW$;
+	mes "Estas item son muy buenos:";
+	mes "^000088No te confies todas son poderosas^000000:";
+	set @item, select("valkyrie armor", "Valkyrian Manteau", "Valkyrian Shoes", "Valkyrja's Shield", "Sleipnir", "Nile Rose", "Dragon Wings", "Valkyrie Helm", "Cyclop's Eye");
+	switch (@item)
+	{
+		case 1: goto wings4_1;
+		case 2: goto wings4_2;
+		case 3: goto wings4_3;
+		case 4: goto wings4_4;
+		case 5: goto wings4_5;
+		case 6: goto wings4_6;
+		case 7: goto wings4_7;
+		case 8: goto wings4_8;
+		case 9: goto wings4_9;
+	}
+wings4_1:
+	next;
+	mes "Necesitaras esto:";
+	mes "700 cheque";
+	next;
+	if(countitem(3100)<700)goto falta;
+	next;
+	mes "Tienes todo, asi que aqui esta tu item";
+	next;
+	delitem 3100,700;
+	getitem 2357,1;
+	close;
+	npctalk "~ Editado para Flow Ro ~";
+	
+wings4_2:
+	next;
+	mes "Necesitaras esto:";
+	mes "1500 cheque";
+	next;
+	if(countitem(3100)<1500)goto falta;
+	next;
+	mes "Tienes todo, asi que aqui esta tu item";
+	next;
+	delitem 3100,1500;
+	getitem 2524,1;
+	close;
+	npctalk "~ Editado para Flow RO ~";
+	
+wings4_3:
+	next;
+	mes "Necesitaras esto:";
+	mes "500 cheque";
+	next;
+	if(countitem(3100)<500)goto falta;
+	next;
+	mes "Tienes todo, asi que aqui esta tu item";
+	next;
+	delitem 3100,500;
+	getitem 2421,1;
+	close;
+	npctalk "~ Editado para Flow RO ~";
+	
+wings4_4:
+	next;
+	mes "Necesitaras esto:";
+	mes "500 cheque";
+	next;
+	if(countitem(3100)<500)goto falta;
+	next;
+	mes "Tienes todo, asi que aqui esta tu item";
+	next;
+	delitem 3100,500;
+	getitem 2115,1;
+	close;
+	npctalk "~ NPC hecho por Flow RO ~";
+	
+wings4_5:
+	next;
+	mes "Necesitaras esto:";
+	mes "700 cheque";
+	next;
+	if(countitem(3100)<700)goto falta;
+	next;
+	mes "Tienes todo, asi que aqui esta tu item";
+	next;
+	delitem 3100,700;
+	getitem 2410,1;
+	close;
+	npctalk "~ NPC hecho por Flow RO ~";
+
+wings4_6:
+	next;
+	mes "Necesitaras esto:";
+	mes "500 cheque";
+	next;
+	if(countitem(3100)<500)goto falta;
+	next;
+	mes "Tienes todo, asi que aqui esta tu item";
+	next;
+	delitem 3100,500;
+	getitem 2647,1;
+	close;
+	npctalk "~ NPC hecho por Flow RO ~";
+
+wings4_7:
+	next;
+	mes "Necesitaras esto:";
+	mes "1500 cheque";
+	next;
+	if(countitem(3100)<1500)goto falta;
+	next;
+	mes "Tienes todo, asi que aqui esta tu item";
+	next;
+	delitem 3100,1500;
+	getitem 3004,1;
+	close;
+	npctalk "~ NPC hecho por Flow RO ~";
+
+wings4_8:
+	next;
+	mes "Necesitaras esto:";
+	mes "1500 cheque";
+	next;
+	if(countitem(3100)<1500)goto falta;
+	next;
+	mes "Tienes todo, asi que aqui esta tu item";
+	next;
+	delitem 3100,1500;
+	getitem 3019,1;
+	close;
+	npctalk "~ NPC hecho por Flow RO ~";
+
+wings4_9:
+	next;
+	mes "Necesitaras esto:";
+	mes "1500 cheque";
+	next;
+	if(countitem(3100)<1500)goto falta;
+	next;
+	mes "Tienes todo, asi que aqui esta tu item";
+	next;
+	delitem 3100,1500;
+	getitem 5135,1;
+	close;
+Msalir:
+	mes "...";
+	close;
+falta:
+	mes "Aun no tienes lo necesario vuelve cuando lo tengas..";
+	close;
+	npctalk "~ NPC hecho por Flow staff ~";
+}

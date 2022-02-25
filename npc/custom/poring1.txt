@@ -1,0 +1,503 @@
+//===== eAthena Script =======================================
+//= NPC Multi Eventos
+//===== Por: ==================================================
+//= Rpizer/Nothing
+//===== Para: ==================================================
+//= Servidor Luna Ro
+//= Servidor Debility Ro
+//= Ragnarok Online Developers ( http://devs.ragnarok-online.net/foro )
+//===== Version: =====================================
+//= 3.0 
+//===== Changelog: =====================================
+//= 1.0: Se incorporaron los 2 Eventos Basicos ( 500 Porings y Invaciones por Niveles ).
+//= 2.0: Se añadio el menu en el NPC para poder Iniciar y Terminar cada uno de los Eventos.
+//= 3.0: Se incorporo el sistema para saber si un Evento esta transcurriendo o no, y se añadieron 2 Eventos mas ( Porings Falsos, Invacion Satan Morroc ).
+//===== Compatible Con: =====================================
+//= Eathena Trunk/Stable; TXT/SQL.
+//===== Descripcion: =========================================
+//= Un NPC con 4 eventos para poder usar en el servidor.
+//============================================================
+prontera,134,201,1	script	Multi-Eventos	726,{
+
+	set .It1, 7227; // Id Item 1 Premio
+	set .It2, 7227; // Id Item 2 Premio
+	set .It3, 7227; // Id Item 3 Premio
+	set .It4, 7227; // Id Item 4 Premio
+	set .It5, 7227; // Id Item 5 Premio
+	set .It6, 7227; // Id Item 6 Premio
+	set .It7, 7227; // Id Item 7 Premio
+	set .It8, 7227; // Id Item 8 Premio
+	set .It9, 7227; // Id Item 9 Premio
+	set .It10, 7227; // Id Item 10 Premio
+	set .It11, 7227; // Id Item 11 Premio
+	set .It12, 7227; // Id Item 12 Premio
+	set .It13, 7227; // Id Item 13 Premio
+	set .It14, 7227; // Id Item 14 Premio
+	set .It15, 7227; // Id Item 15 Premio
+	set .It16, 7227; // Id Item 16 Premio
+	set .It17, 7227; // Id Item 17 Premio
+	set .It18, 7227; // Id Item 18 Premio
+	set .It19, 7227; // Id Item 19 Premio
+	set .It20, 7227; // Id Item 20 Premio
+
+	if(getgmlevel()<99) goto L_NotGm;
+	switch(select("Ver Eventos Actuales","Evento 500 Porings","Invasion MVP","Porings Falsos","Invacion Satan Morocc")) {
+
+	case 1:
+		mes "[NPC Multi Eventos]";
+		mes "500 Porings esta: "+((Porings == 1) ? "^00FF00Prendido^000000":"^FF0000Apagado^000000")+" ";
+		mes "Invacion MVP esta: "+((Mvp == 1) ? "^00FF00Prendido^000000":"^FF0000Apagado^000000")+" ";
+		mes "Falsos Porings esta: "+((NPorings == 1) ? "^00FF00Prendido^000000":"^FF0000Apagado^000000")+" ";
+		mes "Invacion Satan Morocc esta: "+((Satan == 1) ? "^00FF00Prendido^000000":"^FF0000Apagado^000000")+" ";
+		close;
+		end;
+
+	case 2:
+		mes "[NPC Multi Eventos]";
+		mes "500 Porings esta: "+((Porings == 1) ? "^00FF00Prendido^000000":"^FF0000Apagado^000000")+" ";
+		switch(select("Comenzar","Terminar")) {
+		case 1:
+			if(Porings == 1) goto L_Prendido;
+			goto L_Porings;
+		end;
+
+		case 2:
+			if(Porings == 1) {
+			announce "El GM "+strcharinfo(0)+" a terminado el Evento De Los 500 Porings",bc_yellow|bc_all;
+			killmonsterall "pvp_n_8-5";
+			set Porings, 0;
+			removemapflag "pvp_n_8-5",12; //mf_noskill
+			close;
+			end;
+		}
+		else
+		{
+		goto L_NoPren;
+		}
+	}
+	end;
+
+	case 3:
+		mes "[NPC Multi Eventos]";
+		mes "Invacion MVP esta: "+((Mvp == 1) ? "^00FF00Prendido^000000":"^FF0000Apagado^000000")+" ";
+		switch(select("Comenzar","Terminar")) {
+		case 1:
+			if(Mvp == 1) goto L_Prendido;
+
+			setarray .Mapas$[0],"alberta","aldebaran","amatsu","ayothaya","comodo","einbroch","geffen","gonryun","hugel","izlude","jawaii","lighthalzen","louyang","morocc","moscovia","niflheim","payon","prontera","rachel","umbala","veins","xmas","yuno";
+			set .Mapa$, .Mapas$[rand(getarraysize(.Mapas$))];
+
+			setarray .MINI[0],1096,1388,1641,1830,1839,1642;
+			set .Mini, .MINI[rand(getarraysize(.MINI))];
+
+			setarray .MINI2[0],1829,1644,1960,1582,1120,1755;
+			set .Mini2, .MINI2[rand(getarraysize(.MINI2))];
+
+			setarray .MINI3[0],1765,1643,1645,1720,1640,1705;
+			set .Mini3, .MINI3[rand(getarraysize(.MINI3))];
+
+			setarray .MINI4[0],1921,1918,1920,1919,1754,1707;
+			set .Mini4, .MINI4[rand(getarraysize(.MINI4))];
+
+			switch(select("Mvp Nivel 1","Mvp Nivel 2","Mvp Nivel 3","Mvp Nivel Biolab","Mvp Nivel Final")) {
+			case 1:
+				goto L_MVP1;
+				end;
+			case 2:
+				goto L_MVP2;
+				end;
+			case 3:
+				goto L_MVP3;
+				end;
+			case 4:
+				goto L_MVPB;
+				end;
+			case 5:
+				goto L_MVPF;
+				end;
+			}
+			end;
+		case 2:
+			if(Mvp == 1) {
+			announce "El GM "+strcharinfo(0)+" a terminado la Invacion MVP",bc_yellow|bc_all;
+			killmonsterall .@Mapa$;
+			set Mvp, 0;
+			close;
+			end;
+		}
+		else
+		{
+		goto L_NoPren;
+		}
+	}
+	end;
+
+	case 4:
+		mes "[NPC Multi Eventos]";
+		mes "Falsos Porings esta: "+((NPorings == 1) ? "^00FF00Prendido^000000":"^FF0000Apagado^000000")+" ";
+		switch(select("Comenzar","Terminar")) {
+		case 1:
+			if(NPorings == 1) goto L_Prendido;
+			goto L_FPorings;
+		end;
+
+		case 2:
+			if(NPorings == 1) {
+			announce "El GM "+strcharinfo(0)+" a terminado el Evento De Los Falsos Porings",bc_yellow|bc_all;
+			killmonsterall "pvp_n_8-2";
+			set NPorings, 0;
+			removemapflag "pvp_n_8-2",12; //mf_noskill
+			close;
+			end;
+		}
+		else
+		{
+		goto L_NoPren;
+		}
+	}
+	end;
+
+	case 5:
+		mes "[NPC Multi Eventos]";
+		mes "Invacion Satan Morocc esta: "+((Satan == 1) ? "^00FF00Prendido^000000":"^FF0000Apagado^000000")+" ";
+		switch(select("Comenzar","Terminar")) {
+		case 1:
+			if(Satan == 1) goto L_Prendido;
+			goto L_Satan;
+		end;
+
+		case 2:
+			if(Satan == 1) {
+			announce "El GM "+strcharinfo(0)+" a terminado La Invacion Sobre Morocc",bc_yellow|bc_all;
+			killmonsterall "morocc";
+			set Satan, 0;
+			close;
+			end;
+		}
+		else
+		{
+		goto L_NoPren;
+		}
+	}
+	end;
+
+//---Event Labels
+
+OnPoringDeath:
+	announce "El usuario "+strcharinfo(0)+" a ganado el Evento De Los 500 Porings",bc_yellow|bc_all;
+	setarray .@Item[0],.It1,.It2,.It3,.It4,.It5,.It6,.It7,.It8,.It9,.It10,.It11,.It12,.It13,.It14,.It15,.It16,.It17,.It18,.It19,.It20;
+	getitem .@Item[rand(getarraysize(.@Item))],1;
+		set #PORINGPOINTS,#PORINGPOINTS+1;
+		set #EVENTPOINTS,#EVENTPOINTS+1;
+		set #PORINGSET,#PORINGSET+1;
+	killmonsterall "pvp_n_8-5";
+	set Porings, 0;
+	removemapflag "pvp_n_8-5",12; //mf_noskill
+	end;
+OnMini1Death:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1){
+		setarray .MVP_1[0],1511,1785,1630,1046,1389,1112,1115,1885,1688,1373,1147,1059,1150,1087,1190,1038,1157,1159,1623,1658;
+		set .Mvp1, .MVP_1[rand(getarraysize(.MVP_1))];
+		monster	.Mapa$,0,0,getmonsterinfo(.Mvp1,0),.Mvp1,1,"Multi-Eventos::OnMVP1Death";
+		announce "El MVP "+getmonsterinfo(.Mvp1,0)+" a aparecido en "+.Mapa$+"!",bc_yellow|bc_all;
+	}
+	end;
+OnMini2Death:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1){
+		setarray .MVP_2[0],1039,1272,1719,1418,1252,1768,1086,1492,1251;
+		set .Mvp2, .MVP_2[rand(getarraysize(.MVP_2))];
+		monster	.Mapa$,0,0,getmonsterinfo(.Mvp2,0),.Mvp2,1,"Multi-Eventos::OnMVP2Death";
+		announce "El MVP "+getmonsterinfo(.Mvp2,0)+" a aparecido en "+.Mapa$+"!",bc_yellow|bc_all;
+	}
+	end;
+OnMini3Death:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1){
+		setarray .MVP_3[0],1871,1873,1832,1734,1779,1583,1708,1312,1751,1685;
+		set .Mvp3, .MVP_3[rand(getarraysize(.MVP_3))];
+		monster	.Mapa$,0,0,getmonsterinfo(.Mvp3,0),.Mvp3,1,"Multi-Eventos::OnMVP3Death";
+		announce "El MVP "+getmonsterinfo(.Mvp3,0)+" a aparecido en "+.Mapa$+"!",bc_yellow|bc_all;
+	}
+	end;
+OnMiniBDeath:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1){
+		setarray .MVP_B[0],1647,1649,1651,1646,1650,1648;
+		set .MvpB, .MVP_B[rand(getarraysize(.MVP_B))];
+		monster	.Mapa$,0,0,getmonsterinfo(.MvpB,0),.MvpB,1,"Multi-Eventos::OnMVPBDeath";
+		announce "El MVP "+getmonsterinfo(.MvpB,0)+" a aparecido en "+.Mapa$+"!",bc_yellow|bc_all;
+	}
+	end;
+OnMiniFDeath:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1){
+		setarray .MVP_F[0],1502,1956;
+		set .MvpF, .MVP_F[rand(getarraysize(.MVP_F))];
+		monster	.Mapa$,0,0,getmonsterinfo(.MvpF,0),.MvpF,1,"Multi-Eventos::OnMVPFDeath";
+		announce "El MVP "+getmonsterinfo(.MvpF,0)+" a aparecido en "+.Mapa$+"!",bc_yellow|bc_all;
+	}
+	end;
+OnMVP1Death:
+	announce "El usuario "+strcharinfo(0)+" a ganado la Invasion MVP Nivel 1 del mapa "+.Mapa$+"!",bc_yellow|bc_all;
+		set #MVPPOINTS,#MVPPOINTS+1;
+		set #EVENTPOINTS,#EVENTPOINTS+1;
+		set #MVP1SET,#MVP1SET+1;
+		setarray .@Item[0],.It1,.It2,.It3,.It4,.It5,.It6,.It7,.It8,.It9,.It10,.It11,.It12,.It13,.It14,.It15,.It16,.It17,.It18,.It19,.It20;
+		getitem .@Item[rand(getarraysize(.@Item))],10;
+	set Mvp, 0;
+	end;
+OnMVP2Death:
+	announce "El usuario "+strcharinfo(0)+" a ganado la Invasion MVP Nivel 2 del mapa "+.Mapa$+"!",bc_yellow|bc_all;
+		set #MVPPOINTS,#MVPPOINTS+2;
+		set #EVENTPOINTS,#EVENTPOINTS+1;
+		set #MVP2SET,#MVP2SET+1;
+		setarray .@Item[0],.It1,.It2,.It3,.It4,.It5,.It6,.It7,.It8,.It9,.It10,.It11,.It12,.It13,.It14,.It15,.It16,.It17,.It18,.It19,.It20;
+		getitem .@Item[rand(getarraysize(.@Item))],10;
+	set Mvp, 0;
+	end;
+OnMVP3Death:
+	announce "El usuario "+strcharinfo(0)+" a ganado la Invasion MVP Nivel 3 del mapa "+.Mapa$+"!",bc_yellow|bc_all;
+		set #MVPPOINTS,#MVPPOINTS+3;
+		set #EVENTPOINTS,#EVENTPOINTS+1;
+		set #MVP3SET,#MVP3SET+1;
+		setarray .@Item[0],.It1,.It2,.It3,.It4,.It5,.It6,.It7,.It8,.It9,.It10,.It11,.It12,.It13,.It14,.It15,.It16,.It17,.It18,.It19,.It20;
+		getitem .@Item[rand(getarraysize(.@Item))],10;
+	set Mvp, 0;
+	end;
+OnMVPBDeath:
+	announce "El usuario "+strcharinfo(0)+" a ganado la Invasion MVP Nivel Biolab del mapa "+.Mapa$+"!",bc_yellow|bc_all;
+		set #MVPPOINTS,#MVPPOINTS+4;
+		set #EVENTPOINTS,#EVENTPOINTS+1;
+		set #MVPBSET,#MVPBSET+1;
+		setarray .@Item[0],.It1,.It2,.It3,.It4,.It5,.It6,.It7,.It8,.It9,.It10,.It11,.It12,.It13,.It14,.It15,.It16,.It17,.It18,.It19,.It20;
+		getitem .@Item[rand(getarraysize(.@Item))],10;
+	set Mvp, 0;
+	end;
+OnMVPFDeath:
+	announce "El usuario "+strcharinfo(0)+" a ganado la Invasion MVP Nivel Final del mapa "+.Mapa$+"!",bc_yellow|bc_all;
+		set #MVPPOINTS,#MVPPOINTS+5;
+		set #EVENTPOINTS,#EVENTPOINTS+1;
+		set #MVPFSET,#MVPFSET+1;
+		setarray .@Item[0],.It1,.It2,.It3,.It4,.It5,.It6,.It7,.It8,.It9,.It10,.It11,.It12,.It13,.It14,.It15,.It16,.It17,.It18,.It19,.It20;
+		getitem .@Item[rand(getarraysize(.@Item))],10;
+	set Mvp, 0;
+	end;
+OnFakePoringDeath:
+	dispbottom "No es el Poring original, vuelve a intentarlo";
+	end;
+OnRealPoringDeath:
+	announce "El usuario "+strcharinfo(0)+" a ganado el Evento De Los Porings Falsos",bc_yellow|bc_all;
+	setarray .@Item[0],.It1,.It2,.It3,.It4,.It5,.It6,.It7,.It8,.It9,.It10,.It11,.It12,.It13,.It14,.It15,.It16,.It17,.It18,.It19,.It20;
+	getitem .@Item[rand(getarraysize(.@Item))],10;
+		set #PORINGPOINTS,#PORINGPOINTS+1;
+		set #EVENTPOINTS,#EVENTPOINTS+1;
+		set #PORINGFALSOSET,#PORINGFALSOSET+1;
+	killmonsterall "pvp_n_8-2";
+	set NPorings, 0;
+	removemapflag "pvp_n_8-2",12; //mf_noskill
+	end;
+OnNorthSatanDeath:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1){
+			announce "El Sur de Morocc esta siendo atacado por monstruos!!!",bc_yellow|bc_all;
+			set .MyMobs,25;
+			monster	"morocc",160,45,getmonsterinfo(1957,0),1957,1,"Multi-Eventos::OnSouthSatanDeath";
+
+			monster	"morocc",170,45,getmonsterinfo(1957,0),1957,1,"Multi-Eventos::OnSouthSatanDeath";
+			monster	"morocc",169,45,getmonsterinfo(1960,0),1960,1,"Multi-Eventos::OnSouthSatanDeath";
+			monster	"morocc",167,45,getmonsterinfo(1922,0),1922,1,"Multi-Eventos::OnSouthSatanDeath";
+			monster	"morocc",165,45,getmonsterinfo(1923,0),1923,1,"Multi-Eventos::OnSouthSatanDeath";
+			monster	"morocc",163,45,getmonsterinfo(1924,0),1924,1,"Multi-Eventos::OnSouthSatanDeath";
+			monster	"morocc",161,45,getmonsterinfo(1925,0),1925,1,"Multi-Eventos::OnSouthSatanDeath";
+
+			monster	"morocc",140,45,getmonsterinfo(1957,0),1957,1,"Multi-Eventos::OnSouthSatanDeath";
+			monster	"morocc",141,45,getmonsterinfo(1960,0),1960,1,"Multi-Eventos::OnSouthSatanDeath";
+			monster	"morocc",143,45,getmonsterinfo(1922,0),1922,1,"Multi-Eventos::OnSouthSatanDeath";
+			monster	"morocc",145,45,getmonsterinfo(1923,0),1923,1,"Multi-Eventos::OnSouthSatanDeath";
+			monster	"morocc",147,45,getmonsterinfo(1924,0),1924,1,"Multi-Eventos::OnSouthSatanDeath";
+			monster	"morocc",149,45,getmonsterinfo(1925,0),1925,1,"Multi-Eventos::OnSouthSatanDeath";
+
+			monster	"morocc",160,35,getmonsterinfo(1957,0),1957,1,"Multi-Eventos::OnSouthSatanDeath";
+			monster	"morocc",160,36,getmonsterinfo(1960,0),1960,1,"Multi-Eventos::OnSouthSatanDeath";
+			monster	"morocc",160,38,getmonsterinfo(1922,0),1922,1,"Multi-Eventos::OnSouthSatanDeath";
+			monster	"morocc",160,40,getmonsterinfo(1923,0),1923,1,"Multi-Eventos::OnSouthSatanDeath";
+			monster	"morocc",160,42,getmonsterinfo(1924,0),1924,1,"Multi-Eventos::OnSouthSatanDeath";
+			monster	"morocc",160,44,getmonsterinfo(1925,0),1925,1,"Multi-Eventos::OnSouthSatanDeath";
+
+			monster	"morocc",160,55,getmonsterinfo(1957,0),1957,1,"Multi-Eventos::OnSouthSatanDeath";
+			monster	"morocc",160,54,getmonsterinfo(1960,0),1960,1,"Multi-Eventos::OnSouthSatanDeath";
+			monster	"morocc",160,52,getmonsterinfo(1922,0),1922,1,"Multi-Eventos::OnSouthSatanDeath";
+			monster	"morocc",160,50,getmonsterinfo(1923,0),1923,1,"Multi-Eventos::OnSouthSatanDeath";
+			monster	"morocc",160,48,getmonsterinfo(1924,0),1924,1,"Multi-Eventos::OnSouthSatanDeath";
+			monster	"morocc",160,46,getmonsterinfo(1925,0),1925,1,"Multi-Eventos::OnSouthSatanDeath";
+	}
+	end;
+OnSouthSatanDeath:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1){
+			announce "Satan Morroc aparecio en el centro de Morocc!!!",bc_yellow|bc_all;
+			monster	"morocc",160,95,getmonsterinfo(1917,0),1917,1,"Multi-Eventos::OnSatanMorrocDeath";
+	}
+	end;
+OnSatanMorrocDeath:
+	announce "El usuario "+strcharinfo(0)+" a matado a Satan Morroc, la ciudad esta a salvo!!!",bc_yellow|bc_all;
+	setarray .@Item[0],.It1,.It2,.It3,.It4,.It5,.It6,.It7,.It8,.It9,.It10,.It11,.It12,.It13,.It14,.It15,.It16,.It17,.It18,.It19,.It20;
+	getitem .@Item[rand(getarraysize(.@Item))],30;
+		set #SATANPOINTS,#SATANPOINTS+1;
+		set #EVENTPOINTS,#EVENTPOINTS+1;
+		set #SATANSET,#SATANSET+1;
+	set Satan, 0;
+	end;
+}
+L_NotGm:
+	mes "[NPC Multi Eventos]";
+	mes "Hola "+strcharinfo(0)+", ¿En que puedo ayudarte hoy?";
+	switch(select("Ver Eventos Actuales","Ver Puntos","Eventos Ganados")) {
+	case 1:
+		mes "[NPC Multi Eventos]";
+		mes "500 Porings esta: "+((Porings == 1) ? "^00FF00Prendido^000000":"^FF0000Apagado^000000")+" ";
+		mes "Invacion MVP esta: "+((Mvp == 1) ? "^00FF00Prendido^000000":"^FF0000Apagado^000000")+" ";
+		mes "Falsos Porings esta: "+((NPorings == 1) ? "^00FF00Prendido^000000":"^FF0000Apagado^000000")+" ";
+		mes "Invacion Satan Morocc esta: "+((Satan == 1) ? "^00FF00Prendido^000000":"^FF0000Apagado^000000")+" ";
+		close;
+		end;
+	case 2:
+		mes "Tenes "+#PORINGPOINTS+" Poring Points";
+		mes "Tenes "+#MVPPOINTS+" MVP Points";
+		mes "Tenes "+#SATANPOINTS+" Satan Points";
+		mes "Tenes "+#EVENTPOINTS+" Evento Points";
+		close;
+		end;
+	case 3:
+		mes "Ganastes los siguientes eventos:";
+		mes "500 Porings: "+#PORINGSET+" Veces";
+		mes "Invacion MVP Nivel 1: "+#MVP1SET+" Veces";
+		mes "Invacion MVP Nivel 2: "+#MVP2SET+" Veces";
+		mes "Invacion MVP Nivel 3: "+#MVP3SET+" Veces";
+		mes "Invacion MVP Nivel Biolab: "+#MVPBSET+" Veces";
+		mes "Invacion MVP Nivel Final: "+#MVPFSET+" Veces";
+		mes "Falsos Porings: "+#PORINGFALSOSET+" Veces";
+		mes "Satan Morocc: "+#SATANSET+" Veces";
+		close;
+		end;
+}
+L_Prendido:
+	mes "El evento ya esta prendido.";
+	close;
+	end;
+
+L_NoPren:
+	mes "El evento no esta prendido.";
+	close;
+	end;
+
+//--- Goto Para Los Eventos
+L_Porings:
+			announce "El Evento De Los 500 Porings a empezado en el mapa pvp_n_8-5",bc_yellow|bc_all;
+			monster	"pvp_n_8-5",0,0,"Poring",1725,599;
+			monster	"pvp_n_8-5",0,0,"Poring",1725,1,"Multi-Eventos::OnPoringDeath";
+			set Porings, 1;
+			setmapflag "pvp_n_8-5",12; //mf_noskill
+		close;
+		end;
+L_MVP1:
+			announce "La Invacion MVP Nivel 1 a comenzado en "+.Mapa$+"",bc_yellow|bc_all;
+			set .MyMobs,20;
+			monster	.Mapa$,0,0,getmonsterinfo(.Mini,0),.Mini,5,"Multi-Eventos::OnMini1Death";
+			monster	.Mapa$,0,0,getmonsterinfo(.Mini2,0),.Mini2,5,"Multi-Eventos::OnMini1Death";
+			monster	.Mapa$,0,0,getmonsterinfo(.Mini3,0),.Mini3,5,"Multi-Eventos::OnMini1Death";
+			monster	.Mapa$,0,0,getmonsterinfo(.Mini4,0),.Mini4,5,"Multi-Eventos::OnMini1Death";
+			set Mvp, 1;
+		close;
+		end;
+L_MVP2:
+			announce "La Invacion MVP Nivel 2 a comenzado en "+.Mapa$+"",bc_yellow|bc_all;
+			set .MyMobs,40;
+			monster	.Mapa$,0,0,getmonsterinfo(.Mini,0),.Mini,10,"Multi-Eventos::OnMini2Death";
+			monster	.Mapa$,0,0,getmonsterinfo(.Mini2,0),.Mini2,10,"Multi-Eventos::OnMini2Death";
+			monster	.Mapa$,0,0,getmonsterinfo(.Mini3,0),.Mini3,10,"Multi-Eventos::OnMini2Death";
+			monster	.Mapa$,0,0,getmonsterinfo(.Mini4,0),.Mini4,10,"Multi-Eventos::OnMini2Death";
+			set Mvp, 1;
+		close;
+		end;
+L_MVP3:
+			announce "La Invacion MVP Nivel 3 a comenzado en "+.Mapa$+"",bc_yellow|bc_all;
+			set .MyMobs,60;
+			monster	.Mapa$,0,0,getmonsterinfo(.Mini,0),.Mini,15,"Multi-Eventos::OnMini3Death";
+			monster	.Mapa$,0,0,getmonsterinfo(.Mini2,0),.Mini2,15,"Multi-Eventos::OnMini3Death";
+			monster	.Mapa$,0,0,getmonsterinfo(.Mini3,0),.Mini3,15,"Multi-Eventos::OnMini3Death";
+			monster	.Mapa$,0,0,getmonsterinfo(.Mini4,0),.Mini4,15,"Multi-Eventos::OnMini3Death";
+			set Mvp, 1;
+		close;
+		end;
+L_MVPB:
+			announce "La Invacion MVP Nivel Biolab a comenzado en "+.Mapa$+"",bc_yellow|bc_all;
+			set .MyMobs,80;
+			monster	.Mapa$,0,0,getmonsterinfo(.Mini,0),.Mini,20,"Multi-Eventos::OnMiniBDeath";
+			monster	.Mapa$,0,0,getmonsterinfo(.Mini2,0),.Mini2,20,"Multi-Eventos::OnMiniBDeath";
+			monster	.Mapa$,0,0,getmonsterinfo(.Mini3,0),.Mini3,20,"Multi-Eventos::OnMiniBDeath";
+			monster	.Mapa$,0,0,getmonsterinfo(.Mini4,0),.Mini4,2,"Multi-Eventos::OnMiniBDeath";
+			set Mvp, 1;
+		close;
+		end;
+L_MVPF:
+			announce "La Invacion MVP Nivel Final a comenzado en "+.Mapa$+"",bc_yellow|bc_all;
+			set .MyMobs,100;
+			monster	.Mapa$,0,0,getmonsterinfo(.Mini,0),.Mini,25,"Multi-Eventos::OnMiniFDeath";
+			monster	.Mapa$,0,0,getmonsterinfo(.Mini2,0),.Mini2,25,"Multi-Eventos::OnMiniFDeath";
+			monster	.Mapa$,0,0,getmonsterinfo(.Mini3,0),.Mini3,25,"Multi-Eventos::OnMiniFDeath";
+			monster	.Mapa$,0,0,getmonsterinfo(.Mini4,0),.Mini4,25,"Multi-Eventos::OnMiniFDeath";
+			set Mvp, 1;
+		close;
+		end;
+L_FPorings:
+			announce "El Evento De Los Porings Falsos a empezado en el mapa pvp_n_8-2",bc_yellow|bc_all;
+			monster	"pvp_n_8-2",0,0,"Porings",1725,95,"Multi-Eventos::OnFakePoringDeath";
+			monster	"pvp_n_8-2",0,0,"Puring",1725,95,"Multi-Eventos::OnFakePoringDeath";
+			monster	"pvp_n_8-2",0,0,"Poringd",1725,95,"Multi-Eventos::OnFakePoringDeath";
+			monster	"pvp_n_8-2",0,0,"Pouring",1725,95,"Multi-Eventos::OnFakePoringDeath";
+			monster	"pvp_n_8-2",0,0,"Paring",1725,95,"Multi-Eventos::OnFakePoringDeath";
+			monster	"pvp_n_8-2",0,0,"Poryng",1725,95,"Multi-Eventos::OnFakePoringDeath";
+			monster	"pvp_n_8-2",0,0,"Poring",1725,1,"Multi-Eventos::OnRealPoringDeath";
+			set NPorings, 1;
+			setmapflag "pvp_n_8-2",12; //mf_noskill
+		close;
+		end;
+L_Satan:
+			announce "El Norte de Morocc esta siendo atacado por monstruos!!!",bc_yellow|bc_all;
+			set .MyMobs,25;
+			monster	"morocc",160,280,getmonsterinfo(1957,0),1957,1,"Multi-Eventos::OnNorthSatanDeath";
+
+			monster	"morocc",170,280,getmonsterinfo(1957,0),1957,1,"Multi-Eventos::OnNorthSatanDeath";
+			monster	"morocc",169,280,getmonsterinfo(1960,0),1960,1,"Multi-Eventos::OnNorthSatanDeath";
+			monster	"morocc",167,280,getmonsterinfo(1922,0),1922,1,"Multi-Eventos::OnNorthSatanDeath";
+			monster	"morocc",165,280,getmonsterinfo(1923,0),1923,1,"Multi-Eventos::OnNorthSatanDeath";
+			monster	"morocc",163,280,getmonsterinfo(1924,0),1924,1,"Multi-Eventos::OnNorthSatanDeath";
+			monster	"morocc",161,280,getmonsterinfo(1925,0),1925,1,"Multi-Eventos::OnNorthSatanDeath";
+
+			monster	"morocc",150,280,getmonsterinfo(1957,0),1957,1,"Multi-Eventos::OnNorthSatanDeath";
+			monster	"morocc",151,280,getmonsterinfo(1960,0),1960,1,"Multi-Eventos::OnNorthSatanDeath";
+			monster	"morocc",153,280,getmonsterinfo(1922,0),1922,1,"Multi-Eventos::OnNorthSatanDeath";
+			monster	"morocc",155,280,getmonsterinfo(1923,0),1923,1,"Multi-Eventos::OnNorthSatanDeath";
+			monster	"morocc",157,280,getmonsterinfo(1924,0),1924,1,"Multi-Eventos::OnNorthSatanDeath";
+			monster	"morocc",159,280,getmonsterinfo(1925,0),1925,1,"Multi-Eventos::OnNorthSatanDeath";
+
+			monster	"morocc",160,270,getmonsterinfo(1957,0),1957,1,"Multi-Eventos::OnNorthSatanDeath";
+			monster	"morocc",160,271,getmonsterinfo(1960,0),1960,1,"Multi-Eventos::OnNorthSatanDeath";
+			monster	"morocc",160,273,getmonsterinfo(1922,0),1922,1,"Multi-Eventos::OnNorthSatanDeath";
+			monster	"morocc",160,275,getmonsterinfo(1923,0),1923,1,"Multi-Eventos::OnNorthSatanDeath";
+			monster	"morocc",160,277,getmonsterinfo(1924,0),1924,1,"Multi-Eventos::OnNorthSatanDeath";
+			monster	"morocc",160,279,getmonsterinfo(1925,0),1925,1,"Multi-Eventos::OnNorthSatanDeath";
+
+			monster	"morocc",160,290,getmonsterinfo(1957,0),1957,1,"Multi-Eventos::OnNorthSatanDeath";
+			monster	"morocc",160,289,getmonsterinfo(1960,0),1960,1,"Multi-Eventos::OnNorthSatanDeath";
+			monster	"morocc",160,287,getmonsterinfo(1922,0),1922,1,"Multi-Eventos::OnNorthSatanDeath";
+			monster	"morocc",160,285,getmonsterinfo(1923,0),1923,1,"Multi-Eventos::OnNorthSatanDeath";
+			monster	"morocc",160,283,getmonsterinfo(1924,0),1924,1,"Multi-Eventos::OnNorthSatanDeath";
+			monster	"morocc",160,281,getmonsterinfo(1925,0),1925,1,"Multi-Eventos::OnNorthSatanDeath";
+			set Satan, 1;
+		close;
+		end;
+}

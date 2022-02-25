@@ -1,0 +1,47 @@
+//===== eAthena Script =======================================
+//= Duel Rooms
+//===== By: ==================================================
+//= Colundrum/ratalaika
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= Any eAthena Version
+//===== Description: =========================================
+//= Env?a a la sala de PvP y cuenta los usuarios que hay en cada sala.
+//===== Additional Comments: =================================
+//= No comments yet
+//============================================================
+
+
+prontera,164,171,3	script	Duel Room#dr1	821,{
+	setarray $duelmaps$[0],"pvp_n_1-2","pvp_n_2-2","pvp_n_3-2","pvp_n_4-2","pvp_n_5-2","pvp_n_6-2","pvp_n_7-2","pvp_n_8-2";
+
+inicio:
+	mes "[^ff0000[Duel Room]^000000]";
+	mes "Hola Amigo, Quieres ir a la duel room!";
+	mes "Escoje la sala en la que quieres entrar";
+	next;
+	mes "[^ff0000[Duel Room]^000000]";
+	for (set .@i, 0; .@i < getarraysize($duelmaps$); set .@i, .@i + 1) {
+		if (getmapusers($duelmaps$[.@i]) >= 2) { mes "Sala "+.@i+": Llena"; } else { mes "Sala "+.@i+": Libre"; }
+		if( .@i < 1 )
+			set .@menu$, "Sala "+.@i;
+		else
+			set .@menu$, .@menu$+":Sala "+.@i;
+	}
+
+	next;
+	select(.@menu$);
+	set @choice, @menu - 1;
+
+	if (getmapusers($duelmaps$[@choice]) >= 2) {
+		mes "[^ff0000[Duel Room]^000000]";
+		mes "Sala "+@choice+" Llena";
+		mes "No puedes entrar, escoge otra.";
+		next;
+		goto inicio;
+	} else {
+		warp $duelmaps$[@choice],0,0;
+		close;
+	}
+}

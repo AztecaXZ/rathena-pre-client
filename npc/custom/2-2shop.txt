@@ -1,0 +1,62 @@
+prontera,143,168,5	shop	card 	86,4142:10000000,4305:20000000,4302:50000000,4403:100000000
+prontera,143,166,5	shop	Icarus Weapon 	86,1308:1000000000,1416:1000000000,1817:1000000000,1928:1000000000,13029:1000000000,3500:1000000000,3501:1000000000,3502:1000000000
+prontera,150,150,5	script	LHZ Card	941,{
+
+mes "[credit Trade]";
+mes "Yo intercambio card por credit";
+mes "Elije la card que desees intercambiar";
+menu "LK card (6B Credit)",-,"SINX Card(10B)",M_2,"WS Card(7B)",M_3,"HP Card(1B)",M_4,"HW Card (1.5b)",M_5,"Sniper Card (5B)",M_6,"Thanatos Card(8B)",M_7,"salir",M_EXIT;
+
+if(countitem(3100) <600) goto L_NotEnough;
+delitem 3100,600;
+getitem 4357,1;
+close;
+
+M_2:
+if(countitem(3100) <1000) goto L_NotEnough;
+delitem 3100,1000;
+getitem 4359,1;
+close;
+
+M_3:
+if(countitem(3100) <700) goto L_NotEnough;
+delitem 3100,700;
+getitem 4361,1;
+close;
+
+M_4:
+if(countitem(3100) <100) goto L_NotEnough;
+delitem 3100,100;
+getitem 4363,1;
+close;
+
+M_5:
+if(countitem(3100) <150) goto L_NotEnough;
+delitem 3100,150;
+getitem 4365,1;
+close;
+
+M_6:
+if(countitem(3100) <500) goto L_NotEnough;
+delitem 3100,500;
+getitem 4367,1;
+close;
+
+M_7:
+if(countitem(3100) <800) goto L_NotEnough;
+delitem 3100,800;
+getitem 4399,1;
+close;
+
+M_EXIT:
+ mes "[Gof]";
+ mes callfunc("F_Bye");
+ close;
+
+L_NotEnough:
+   mes ". . .Disculpa no tienes todas las TCG Card";
+   mes "NO te podre tradiar lo que deseas..";
+   mes "Regresa cuando tengas las TCG Card";
+   close;
+
+}

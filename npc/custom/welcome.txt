@@ -1,0 +1,51 @@
+//////////////////////////////////
+//===== Script =======================================
+//= Atlas Script
+//===== By: ==================================================
+//= Atlas
+//===== Version: =====================================
+//= 2.0
+//===== Compatible =====================================
+//= Hercules - rAthena
+//===== Additional Comments: =================================
+//============================================================
+new_1-1,53,111,5	script	Bienvenido::inicio1	-1,4,4,{
+
+OnTouch:
+	if (welcome == 0) {
+		cutin "kafra_03",2;
+		mes "Hola "+(Sex?"forastero":"forastera")+",";
+		mes "es la primera vez que te veo,";
+		mes "como te llamas?";
+		next;
+		cutin "",255;
+		mes "[^0080FF"+strcharinfo(0)+"^000000]";
+		mes "Mi nombre es "+strcharinfo(0)+"!";
+		mes "Vengo desde tierras muy lejanas...";
+		next;
+		cutin "kafra_03",2;
+		announce (Sex?"Bienvenido":"Bienvenida")+" "+strcharinfo(0)+" a Tales of Elysea!",bc_all|bc_blue;
+		mes "Asi que ^0080FF"+strcharinfo(0)+"^000000, eh?";
+		mes "Vaya, vaya...";
+		next;
+		mes "Pues ten cuidado ahi fuera,";
+		mes "hay criaturas de los mas temibles!";
+		mes "Acepta esto, te dara suerte.";
+		set welcome,1;
+		rentitem 2765,7200;
+		sleep2 1000;
+		close2;
+		cutin "",255;
+		specialeffect2 910;
+		sleep2 500;
+		specialeffect2 757;
+		sleep2 2500;
+		specialeffect2 304;
+		sleep2 500;
+		savepoint "prontera",155,181;
+		warp "prontera",155,181;
+		end;
+	} else {
+		end;
+	}
+}

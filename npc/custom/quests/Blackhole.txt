@@ -1,0 +1,47 @@
+// $Id: kaho_balmung.txt,v 1.1.1.1 2004/09/10 17:26:46 MagicalTux Exp $
+//-------------------- 'Balmung & Lord Kaho's Horns' Quest --------------------
+// Warning! Don't use this quest 8)
+
+quiz_02,340,59,4	script	Blackhole	95,{
+	mes "[Blackhole]";
+	mes "Welcome to prontera, I am the dragon in charge of the royal quest.";
+	next;
+
+	mes "[Blackhole]";
+	mes "There are too quests please chose the one you must like.";
+	next;
+
+	mes "[Blackhole]";
+	mes "The Blackhole quest consist of the next items:";
+	mes "30 Mother's Nightmare";
+	mes "30 Tiger's Footskin";
+	mes "50 Heroic Emblem";
+	mes "10 Three-Headed Dragon's Head";
+	mes "30 Broken Pharaoh Emblem";
+	mes "1  dark valkyrie helm";
+	mes "100,000,000z";
+	next;
+	if(countitem(7020)<20 || countitem(1030)<20 || countitem(968)<30 || countitem(7443)<10
+		|| countitem(7113)<20 || countitem(26094)<1 || Zeny<100000000) goto NoItems;
+	delitem 7020,20;
+	delitem 1030,20;
+	delitem 968,30;
+	delitem 7443,10;
+	delitem 7113,200;
+	delitem 26094,1;
+	set Zeny,Zeny-100000000;
+	mes "[Blackhole]";
+	mes "I see you already have all the items you need.";
+	mes "nice work.";
+	getitem 26100,1;
+	close;
+Lend:
+	mes "[Blackhole]";
+	mes "Have a nice day.";
+	close;
+NoItems:
+	mes "[Blackhole]";
+	mes "Sorry you don't have all the items or zeny I need.";
+	mes "Come back when you have them all";
+	close;
+}

@@ -1,0 +1,110 @@
+//===== Athena Script =======================================
+//= DeathBranch Arena
+//===== By ================================================
+//= Draxter
+//===== Version ===========================================
+//= 2.0
+//===== Compatible With ===================================
+//= Cualquier Version =PP
+//===== Description =======================================
+//= Warper+ quest Branch
+//===== Comments ==========================================
+//Ninguno este NPC es una pasada
+//=========================================================
+//Reportar Bugs...
+
+pvp_n_1-1.gat,100,149,5	script	DeathBranch	725,{
+mes "Hola,Te encuentras en la sala de DeathBranch";
+mes "¿Que deseas hacer?";
+menu "Transportame",warper,"HEAL!!",healer;
+  
+warper:
+warp "morocc.gat",158,94;
+end;
+healer:
+percentheal 100,100;
+close;
+}
+morocc.gat,162,96,5	script	DeathBranch	725,{
+mes "[^0065DFDeathBranch^000000]";
+mes "¿Que deseas?,";
+menu "DrathBranch",branch1,"Bloddy Branch",bloddy1,"Ir a sala",warper2,"Nada",nothing;
+
+branch1:
+mes "[^0065DFDeathBranch^000000]";
+mes "Bueno para Fabricarte 10 DeathBranch necesito";
+next;
+mes "50	Trunk";
+mes "20	Coal";
+mes "100 Red Herb";
+mes "50 Apple (Ya sabes estar aqui da hambre ^^";
+menu "Si^^.",branch2,"Me da pereza u.u",juazz;
+
+branch2:
+mes "Dejame revisar tu Inventario";
+if((countitem(1019)<50))goto falta;
+if((countitem(1003)<20))goto falta;
+if((countitem(507)<100))goto falta;
+if((countitem(512)<50))goto falta;
+next;
+
+mes "[^0065DFDeathBranch^000000]";
+mes "Aver veamos si tienes todo...";
+delitem 1019,50;
+delitem 1003,60;
+delitem 507,100;
+delitem 512,50;
+getitem 604,10;
+mes "Buena suerte ^^";
+close;
+
+bloddy1:
+mes "[^0065DFDeathBranch^000000]";
+mes "Bueno un BloddyBranch es peligroso,necesitare 50 DBs para hacerlo";
+menu "Ok..Dale u.u",bloody2,"Me da pereza u.u",juazz;
+
+bloody2:
+mes "Revisemos con cuidado...";
+if((countitem(604)<50))goto falta;
+next;
+
+mes "[^0065DFDeathBranch^000000]";
+mes "Realizando hechizo";
+delitem 604,50;
+getitem 12103,1;
+mes "Muy Bien aqui los tienes";
+close;
+warper2:
+mes "[^0065DFDeathBranch^000000]";
+mes "Preparado?";
+menu "Si!!Ready!!",venga,"Paso!",juazz;
+	
+venga:	
+mes "[^0065DFDeathBranch^000000]";
+mes "Fijate como anda la sala";
+menu "Branch! [" + getmapusers("ordeal_1-1.gat") + " /10]",branchevent,"Nada",nothing;
+
+branchevent:
+if( getmapusers("ordeal_1-1.gat")==10 ) goto wait;
+warp "ordeal_1-1.gat",	149,	150;
+end;
+wait:
+mes "[^0065DFDeathBranch^000000]";
+mes "Tienes que esperar,solo 10 pueden entrar";
+close;
+	
+nothing:	
+mes "[^0065DFDeathBranch^000000]";
+mes "Como quieras...";
+close;
+juazz:	
+mes "[^0065DFDeathBranch^000000]";
+mes "Bah..Que aburrido!!";
+close;
+falta:
+mes "[V^0065DFDeathBranch^000000]";
+mes "Te faltan conseguir items";
+mes "Vamos a que si puedes^^";
+close;
+}
+	

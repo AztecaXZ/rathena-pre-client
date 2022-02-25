@@ -1,0 +1,30 @@
+//===== eAthena Script =======================================================================
+//= Script Que te envia a una sala de Gms
+//===== By: =================================================================================
+//= Draxter
+//===== Current Version: ======================================================================
+//= 1.0.0
+//==========================================================================================
+prontera.gat,181,189,5	script	Descanso de GMs	856,{
+
+if (getgmlevel() < 50) goto NoApto;
+
+mes "[^0065DFDescanso de GMs^000000]";
+mes "Te envio a casa de los Gms";
+menu "Avisales mi llegada",Si,"Iré más tarde",No;
+
+Si:
+warp "hu_in01.gat",     287,     245;      close;
+
+No:
+mes "[^0065DFDescanso de GMs^000000]";
+mes "Te reservaré una invitación";
+mes "Adios ^.^";
+close;
+
+NoApto:
+mes "Lo Siento Pero Sólo los GM's pueden entra aqui";
+close;
+}
+
+

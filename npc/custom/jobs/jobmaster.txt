@@ -1,0 +1,298 @@
+//|===================================================================
+//|=••••••••••••••••••••••••••__••••••••••••••••••••••••••••••••••••••••
+//|=•      __________        /  \              _________      ________       •
+//|=•     |  _______/       /    \            |  ______|    / ______ \     •
+//|=•     |  |_______      /  /\  \           |  |______|   | |_____| |   •
+//|=•     |_______| |     /  /  \  \          |   _____|    | |_____| |  •
+//|=•      _______| |    /  ______  \         |  |______|   | |     | |  •
+//|=•     |_________|   /__/      \__\        |________|    | |     | |   •
+//|=•                                                                    •
+//|=••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
+//====================================================================
+//|= 3º job change class
+//====================================================================
+//|= Creado total mente por ..::Seba::.. (XsapX) proibida su reproducion
+//|=parcial o total de este elemento, dedicado para la comunidad DivineRO
+//====================================================================
+
+prontera,162,190,5	script	Job Master	123,{
+function PlatinumSkills;
+set .@name$,"[^0000FFJob Master^000000]";//NOMBRE NPC
+
+mes .@name$;
+if ( Upper == 1 && Class >= Job_Lord_Knight ) {
+	mes "No tienes mas requerimientos.";
+	close;
+}
+if ( SkillPoint != 0 ) {
+	mes "Aun tienes puntos de Skill sin usar";
+	close;
+}
+if ( JobLevel < 10 ) {
+	mes "Necesitas tener nivel 10 de job.";
+	close;
+}
+switch ( Class ) {
+	case 0://Novice
+	case 4023://baby novice
+			skill 143,1,0; // Play Dead
+			skill 142,1,0; // First Aid
+			mes "Elije a que profesión quieres cambiar.";
+			switch ( select("Swordman:Mage:Archer:Acolyte:Merchant:Thief:Super Novice:Gunslinger:Ninja:Taekwon") ) {
+				case 10:
+					if ( Class == 4023 ) {
+						mes "No puedes transformarte en Taekwond.";
+						close;
+					}
+					set @target_job , 4046 ;
+					break;
+				case 9:
+					if ( Class == 4023 ) {
+						mes "No puedes transformarte en Ninja.";
+						close;
+					}
+					set @target_job , 25 ;
+					break;
+				case 8:
+					if ( Class == 4023 ) {
+						mes "No puedes transformarte en Gunslinger.";
+						close;
+					}
+					set @target_job , 24 ;
+					break;
+				case 7:
+					if ( BaseLevel < $@BaseSN ) {
+						mes "Necesitas ser minimo nivel ^008888" + $@BaseSN + "^000000 para cambiar a Super Novice.";
+						close;
+					}
+					if ( Upper == 2 )	set @target_job , 4045 ;
+					else	set @target_job , 23 ;
+					break;
+				default:
+					set @target_job , @menu ;
+					if ( Class == 4023 )	set @target_job , @target_job + 4023 ;
+					break;
+			}
+		break;
+	case 1: //swordman
+	case 4024://baby swordman
+		if ( JobLevel < $@MinJlvl ) {
+			mes "Debes ser minimo ^008888" + $@MinJlvl + "^000000 de nivel de job para transformarte.";
+			close;
+		}
+		mes "¿A que profesión te gustaria cambiar?";
+		if ( select("Knight:Crusader") == 1 )	set @target_job , 7 ;
+		else	set @target_job , 14 ;
+		if ( Upper == 2 )	set @target_job , @target_job + 4023 ;
+		break;
+	case 2://mage
+	case 4025://baby mage
+		if ( JobLevel < $@MinJlvl ) {
+			mes "Debes ser minimo ^008888" + $@MinJlvl + "^000000 de nivel de job para transformarte.";
+			close;
+		}
+		mes "¿A que profesión te gustaria cambiar?";
+		if ( select("Wizard:Sage") == 1 )	set @target_job , 9 ;
+		else set @target_job , 16 ;
+		if ( Upper == 2 )	set @target_job , @target_job + 4023 ;
+		break;
+	case 3://archer
+	case 4026://baby archer
+		if ( JobLevel < $@MinJlvl ) {
+			mes "Debes ser minimo ^008888" + $@MinJlvl + "^000000 de nivel de job para transformarte.";
+			close;
+		}
+		mes "¿A que profesión te gustaria cambiar?";
+		if ( select("Hunter:Bard/Dancer") == 1 )	set @target_job , 11 ;
+		else	if ( Sex == 1 ) set @target_job , 19 ;
+				else set @target_job , 20 ;
+		if ( Upper == 2 )	set @target_job , @target_job + 4023 ;
+		break;
+	case 4://acolite
+	case 4027://baby acolite
+		if ( JobLevel < $@MinJlvl ) {
+			mes "Debes ser minimo ^008888" + $@MinJlvl + "^000000 de nivel de job para transformarte.";
+			close;
+		}
+		mes "¿A que profesión te gustaria cambiar?";
+		if ( select("Priest:Monk") == 1 )	set @target_job , 8 ;
+		else	set @target_job , 15 ;
+		if ( Upper == 2 )	set @target_job , @target_job + 4023 ;
+		break;
+	case 5://merchant
+	case 4028://baby merchant
+		if ( JobLevel < $@MinJlvl ) {
+			mes "Debes ser minimo ^008888" + $@MinJlvl + "^000000 de nivel de job para transformarte.";
+			close;
+		}
+		mes "¿A que profesión te gustaria cambiar?";
+		if ( select("Blacksmith:Alchemist") == 1 )	set @target_job , 10 ;
+		else	set @target_job , 18 ;
+		if ( Upper == 2 )	set @target_job , @target_job + 4023 ;
+		break;
+	case 6://thief
+	case 4029://baby thief
+		if ( JobLevel < $@MinJlvl ) {
+			mes "Debes ser minimo ^008888" + $@MinJlvl + "^000000 de nivel de job para transformarte.";
+			close;
+		}
+		mes "¿A que profesión te gustaria cambiar?";
+		if ( select("Assassin:Rouge") == 1 )	set @target_job , 12 ;
+		else	set @target_job , 17 ;
+		if ( Upper == 2 )	set @target_job , @target_job + 4023 ;
+		break;
+	case 4046://taekwond
+		if ( JobLevel < $@MinJlvl ) {
+			mes "Debes ser minimo ^008888" + $@MinJlvl + "^000000 de nivel de job para transformarte.";
+			close;
+		}
+		mes "¿A que profesión te gustaria cambiar?";
+		if ( select("Star Gladiator:Soul Linker") == 1 )	set @target_job , 4047 ;
+		else 	set @target_job , 4049 ;
+		break;
+	default:
+		if ( Upper == 2 ) {
+			mes "Ya eres ^008888" + jobname(Class) + "^000000, sigue disfrutando tu profesión de baby." ;
+			close;
+		} else {
+			if ( JobLevel < $@MinJlvl ) {
+				mes "Debes ser minimo ^008888" + $@MinJlvl + "^000000 de nivel de job para transformarte.";
+				close;
+			}
+			if ( checkfalcon() || checkcart() || checkriding() ) {
+				mes "No puedes tener equipado Falcon/Carro/Peco, vuelve cuando no lo tengas.";
+				close;
+			}
+			switch ( Class ) {
+				case 7://knight
+					set  @target_job , 4008 ;
+					break;
+				case 8://priest
+					set  @target_job , 4009 ;
+					break;
+				case 9://wizard
+					set  @target_job , 4010 ;
+					break;
+				case 10://blacksmith
+					set  @target_job , 4011 ;
+					break;
+				case 11://hunter
+					set  @target_job , 4012 ;
+					break;
+				case 12://assassin
+					set  @target_job , 4013 ;
+					break;
+				case 14://crusader
+					set  @target_job , 4015 ;
+					break;
+				case 15://monk
+					set  @target_job , 4016 ;
+					break;
+				case 16://sage
+					set  @target_job , 4017 ;
+					break;
+				case 17://rouge
+					set  @target_job , 4018 ;
+					break;
+				case 18://alchemist
+					set  @target_job , 4019 ;
+					break;
+				case 19://bard
+					set  @target_job , 4020 ;
+					break;
+				case 20://dancer
+					set  @target_job , 4021 ;
+					break;
+				default:
+					mes "Ya no cumples los requisitos para cambiar de profesión.";
+					close;
+			}
+		}
+		break;
+}//ENDSWITCH
+next;
+mes .@name$;
+mes "¿Seguro que te quieres convertir en ^008888" + jobname(@target_job) +"^000000?";
+if ( select("No:Si") == 1 ) {
+	mes " ";
+	mes "Vuelve cuando estés decidido a cambiar de profesión";
+} else {
+	jobchange @target_job ;
+	if ( $@Plt_Skills == 1 )	PlatinumSkills();
+	next;
+	mes .@name$;
+	mes "Felicidades, ahora eres ^008888" + jobname(Class) + "^000000, disfruta tu nueva profesión.";
+}
+close;
+
+function PlatinumSkills {
+	if ( BaseClass == Job_Swordman ) {
+		skill 144,1,0; // Moving HP-Recovery
+		skill 145,1,0; // Fatal Blow
+		skill 146,1,0; // Auto Berserk
+	} else if ( BaseClass == Job_Mage ) {
+		skill 157,1,0; // Energy Coat
+	} else if ( BaseClass == Job_Archer ) {
+		skill 147,1,0; // Arrow Crafting
+		skill 148,1,0; // Arrow Repel
+	} else if ( BaseClass == Job_Merchant ) {
+		skill 153,1,0; // Cart Revolution
+		skill 154,1,0; // Change Cart
+		skill 155,1,0; // Crazy Uproar
+	} else if ( BaseClass == Job_Thief ) {
+		skill 149,1,0; // Sand Attack
+		skill 150,1,0; // Back Slide
+		skill 151,1,0; // Find Stone
+		skill 152,1,0; // Stone Fling
+	} else if ( BaseClass == Job_Acolyte ) {
+		skill 156,1,0; // Holy Light
+	}
+	
+	if (Class == Job_Knight || Class == Job_Lord_Knight ) {
+		skill 1001,1,0; // Charge Attack
+	} else if (Class == Job_Crusader || Class == Job_Paladin ) {
+		skill 1002,1,0; // Shrink
+	} else if (Class == Job_Wizard || Class == Job_High_Wizard ) {
+		skill 1006,1,0; // Sight Blaster
+	} else if (Class == Job_Sage || Class == Job_Professor ) {
+		skill 1007,1,0; // Create Elemental Converter
+		skill 1008,1,0; // Elemental Change Water
+		skill 1017,1,0; // Elemental Change Earth
+		skill 1018,1,0; // Elemental Change Fire
+		skill 1019,1,0; // Elemental Change Wind
+	} else if (Class == Job_Hunter || Class == Job_Sniper ) {
+		skill 1009,1,0; // Phantasmic Arrow
+	} else if (Class == Job_Bard || Class == Job_Clown ) {
+		skill 1010,1,0; // Pang Voice
+	} else if (Class == Job_Dancer || Class == Job_Gypsy ) {
+		skill 1011,1,0; // Wink of Charm
+	} else if (Class == Job_Blacksmith || Class == Job_Whitesmith ) {
+		skill 1012,1,0; // Unfair Trick
+		skill 1013,1,0; // Greed
+	} else if (Class == Job_Alchemist || Class == Job_Creator ) {
+		skill 238,1,0; // Bioethics
+	} else if (Class == Job_Assassin || Class == Job_Assassin_Cross ) {
+		skill 1003,1,0; // Sonic Acceleration
+		skill 1004,1,0; // Throw Venom Knife
+	} else if (Class == Job_Rogue || Class == Job_Stalker ) {
+		skill 1005,1,0; // Close Confine
+	} else if (Class == Job_Priest || Class == Job_High_Priest ) {
+		skill 1014,1,0; // Redemptio
+	} else if (Class == Job_Monk || Class == Job_Champion ) {
+		skill 1015,1,0; // Ki Translation
+		skill 1016,1,0; // Ki Explosion
+	}
+return;
+}//ENDFUNCTION
+
+
+Oninit:
+/* [ =========================== CONFIGURACION =================================== ] */
+	set $@MinJlvl , 40 ; //NIVEL MINIMO DE JOB PARA CAMBIAR [ 40 DEFECTO ]
+	set $@BaseSN , 45 ; //NIVEL MINIMO DE BASE PARA CAMBIAR A SUPER NOVICE [ 45 DEFECTO ]
+	set $@Plt_Skills , 1 ; // DAR PLATINUM SKILLS [ 1 = DEFECTO ]
+/* [ ==============================================================================] */
+	end;
+
+}//ENDSCRIPT
+payon,162,228,5	duplicate(Job Master)	Job Master#1	123

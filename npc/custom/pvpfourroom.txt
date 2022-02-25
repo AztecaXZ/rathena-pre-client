@@ -1,0 +1,45 @@
+//===== eAthena Script =======================================
+//= <Name> Script
+//= Created with Raid's NPC Editor 0.9 Alpha
+//===== By: ==================================================
+//= <Author> (1.0)
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= Any eAthena Version; RO Episode XX
+//===== Description: =========================================
+//= <Description>
+//===== Additional Comments: =================================
+//= <Version History and Comments>
+//============================================================
+
+prontera.gat,142,159,6	script	PvP Room	736,{
+	L0:
+		mes "[PvP Room]";
+		mes "Te crees muy Rudo eh!! Tendras que demostrarmelo ";
+		menu "Four Room", L5, "Room Rock On", L6, "Room Compass", L7, "Room Compass", L7, "Room Sandwich", L8;
+		// sala1 //
+		L5:
+			mes "[PvP Room]";
+			mes "Ok alla vas, suerte novato";
+			next;
+			warp "pvp_n_1-3.gat", 0, 0;
+			// sala2 //
+			L6:
+				mes "[PvP Room]";
+				mes "Ok alla vas, suerte novato";
+			next;
+			warp "pvp_n_2-2.gat", 0, 0;
+			// sala3 //
+			L7:
+				mes "[PvP Room]";
+				mes "Ok alla vas, Suerte novato";
+			next;
+			warp "pvp_n_3-5.gat", 0, 0;
+			// sala4 //
+			L8:
+				mes "[PvP Room]";
+				mes "Ok alla vas, Suerte novato";
+				next;
+				warp "pvp_n_1-1.gat", 0, 0;
+}

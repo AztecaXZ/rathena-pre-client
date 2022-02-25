@@ -1,0 +1,58 @@
+//===== eAthena Script =======================================
+//= Reset NPC for Athena by Script & DB Team
+//===== By: ================================================== 
+//= eAthena Team
+//===== Current Version: ===================================== 
+//= 1.1
+//===== Compatible With: ===================================== 
+//= Any eAthena Version
+//===== Description: ========================================= 
+//= Resets skills, stats, or both.
+//===== Additional Comments: ================================= 
+//= 1.0 First Version
+//= 1.1 Optimized for the greater good. [Kisuka]
+//============================================================ 
+que_qsch01,251,339,4	script	Status All	124,{
+	mes "[Reset Girl]";
+	mes "I am a Reset Girl.";
+	mes "allStats: 1,0b";
+	mes "allSkills: 1,0b";
+	mes "allBoth: 1,5b";
+	mes "Please select the service you want:";
+	next;
+	switch(select("^FF3355allSkills:allStats:allBoth^000000:Quit")) {
+		case 1:
+			mes "[Reset Girl]";
+			if (Zeny < 1000000000) {
+				mes "Sorry, you don't have enough Zeny.";
+				close;
+			}
+			mes "Alright, here we go now.. Remember, changes won't take effect until you log back on!";
+			set Zeny,zeny-1000000000;
+			allSkill;
+			close;
+		case 2:
+			mes "[Reset Girl]";
+			if (Zeny < 1000000000) {
+				mes "Sorry, you don't have enough Zeny.";
+				close;
+			}
+			mes "Alright, here we go now.. Remember, changes won't take effect until you log back on!";
+			set Zeny,zeny-1000000000;
+			statall;
+			close;
+		case 3:
+			mes "[Reset Girl]";
+			if (Zeny < 1500000000) {
+				mes "Sorry, you don't have enough Zeny.";
+				close;
+			}
+			mes "Alright, here we go now.. Remember, changes won't take effect until you log back on!";
+			set Zeny,zeny-1500000000;
+			allskill;
+			statall;
+			close;
+		case 4:
+			close;
+	}
+}

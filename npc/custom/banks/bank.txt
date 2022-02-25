@@ -1,0 +1,126 @@
+//===== eAthena Script ======================================= 
+//= Banker Script 
+//===== By: ================================================== 
+//= Syrus22 (1.0)
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= Any eAthena version with Account variables.
+//===== Description: ========================================= 
+//= An account wide Banker to store Zeny
+//===== Additional Comments: ================================= 
+//= Syrus22 - There's an optional transaction fee at the top of
+//= the script. To use it simply change the first set command
+//= to set the cost variable to whatever you want the fee to be.
+//============================================================ 
+turbo_room,93,117,5	script	Banker	109,{
+set @cost,500;
+mes "[Banker]";
+mes "Bienvenido al Primer Banco de Crystal Lake. ¿Cómo puedo ayudarle hoy?";
+next;
+menu "Me gustaría hacer un depósito.",Ldeposit,"Me gustaría hacer un retiro.",Lwithdrawl,"¿Cuál es mi saldo actual?",Lbalance,"Cancel",Lcancel;
+
+Ldeposit:
+	mes "[Banker]";
+	mes "Muy bien ... ¿Cuánto le gustaría estar en depósito? El máximo que puede depositar a la vez es 999,999 Zeny.";
+	next;
+	if (@cost > 0) goto Ldepocost;
+	goto Ldepocont;
+
+	Ldepocost:
+		mes "[Banker]";
+		mes "Ah, y no olvidar que hay una" + @cost + " Zeny carga en todas las transacciones.";
+		next;
+		goto Ldepocont;
+
+Ldepocont:
+	input @deposit;
+	if (@deposit < 1) goto Lrealamount;
+	if (@deposit > Zeny) goto Lneedzeny;
+	if (@deposit > (Zeny - @cost)) goto Lneedzeny2;
+	set Zeny,Zeny - @deposit;
+	set Zeny,Zeny - @cost;
+	set #bankstorage,#bankstorage + @deposit;
+	mes "[Banker]";
+	mes "Muchas gracias ... Su zeny está en buenas manos.";
+	close;
+
+Lwithdrawl:
+	mes "[Banker]";
+	mes "Muy bien ... ¿Cuánto le gustaría retirarse? El máximo que se puede retirar a la vez es 999,999 Zeny";
+	next;
+	if (@cost > 0) goto Lwithcost;
+	goto Lwithcont;
+
+	Lwithcost:
+		mes "[Banker]";
+		mes "Ah, y no olvidar que hay una " + @cost + " Zeny carga en todas las transacciones.";
+		next;
+		goto Lwithcont;
+
+Lwithcont:
+	input @withdrawl;
+	if (@withdrawl < 1) goto Lrealamount;
+	if (@withdrawl > #bankstorage) goto Lneedzeny3;
+	if ((@cost > Zeny) && ((Zeny + @withdrawl) > @cost)) goto Lcostask; 
+	if (@cost > Zeny) goto Lneedzeny2;
+	goto Lwithcont2;
+
+	Lcostask:
+		mes "[Banker]";
+		mes "Usted no tiene el Zeny de la tarifa de transacción en este momento. ¿Le gustaría que yo tome la cuota directamente de su retiro?";
+		next;
+		menu "Sí, por favor.",Lwithtake,"No, gracias.",Lcancel;
+
+	Lwithtake:
+		mes "[Banker]";
+		mes "Ok then.";
+		set @withdrawl,@withdrawl - @cost;
+		set #bankstorage,#bankstorage - @cost;
+		set @cost,0;
+		next;
+		goto Lwithcont2;
+
+Lwithcont2:
+	set Zeny,Zeny - @cost;
+	set Zeny,Zeny + @withdrawl;
+	set #bankstorage,#bankstorage - @withdrawl;
+	mes "[Banker]";
+	mes "There's your Zeny. Have a good day.";
+	close;
+
+Lbalance:
+	mes "[Banker]";
+	mes "Hmm déjame ver los papeles.";
+	next;
+	mes "*Rustle, Rustle*";
+	next;
+	mes "[Banker]";
+	mes "Tiene actualmente " + #bankstorage + " Zeny en su cuenta.";
+	close;
+
+Lrealamount:
+	mes "[Banker]";
+	mes "No te hagas bromas conmigo por favor. La próxima vez que pida a la cantidad real.";
+	close;
+
+Lneedzeny:
+	mes "[Banker]";
+	mes "Usted no tiene suficiente Zeny para hacer que el depósito.";
+	close;
+
+Lneedzeny2:
+	mes "[Banker]";
+	mes "Usted no tiene suficiente Zeny para cubrir los gastos de transacción.";
+	close;
+
+Lneedzeny3:
+	mes "[Banker]";
+	mes "Usted no tiene suficiente Zeny en su cuenta.";
+	close;
+
+Lcancel:
+	mes "[Banker]";
+	mes "Muy bien ... venir de nuevo pronto.";
+	close;
+}

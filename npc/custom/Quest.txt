@@ -1,0 +1,39 @@
+//#####################################################################
+//#  								      #
+//#   #####     #      ########  #    #   #####  ##    #      #       #
+//#   #        ###        ##     #    #   #      # #   #     ###      #
+//#   ####    #   #       ##     ######   ####   #  #  #    #   #     #
+//#   #      #######      ##     #    #   #      #   # #   #######    #
+//#   #####  #     #      ##     #    #   #####  #    ##   #     #    #
+//#                                                                   #
+//#####################################################################
+//
+//
+//===== Athena Script ========================================
+//= Shopping Mall Script
+//===== Credits to ==================================================
+//= Created by : Ayumi
+//= Edit and Bug Fixed By : jm1211
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= Any Athena Version
+//===== Description: =========================================
+//= Shopping Mall cointaining most item except cards
+//===== Additional Comments: =================================
+//= please include my name if u edited this script
+//============================================================
+
+//The quest
+
+//The Quest to Mall
+
+prontera.gat,147,173,3	script	Quest	902,{
+	shop:	warp "quiz_02.gat" ,45,376;
+}	
+
+//The Exit to Prontera
+
+quiz_02.gat,338,74,5	script	Exitt	902,{
+	warp "prontera.gat" ,148,174;
+}	

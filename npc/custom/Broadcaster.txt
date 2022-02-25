@@ -1,0 +1,84 @@
+prontera,182,214,1	script	Broadcaster	90,{
+
+	OnWhisperGlobal:
+	if (@whispervar0$ == "wolas")  {
+	goto Activar;
+	}
+		if ($Numero == 0) set $nuke, 0; 
+
+	mes "Hola amigo ¿ Te gustaría enviar un Mensaje a todo el Servidor ?";
+	next;
+	menu "No gracias lol",no,"Si  por favor",m2;
+
+m2:
+	mes "Te advierto que mi servicio no es gratis, eso si te garanrizo que todo mundo leerá tu mensaje";
+	next;
+	mes "Ok. si quieres mandar un mensaje a todos para mandar saludos o vender algo importante dime que quieres que mande por ti.";
+	mes "Te costará Solo 150,000 Zeny."; 
+	next;
+	menu "Si",M_0,"Hmm...No muy mejor voy con Itachi grax.",M_1;
+
+
+M_0:
+	mes "Ok primero veamos si tienes el dinero que te pido";
+	if(Zeny < 100000) goto sL_Zeny;
+	set Zeny, Zeny - 100000;
+	mes "Ok perfecto entonces selecciona el color en el que quieras que se vea el mensaje";
+	next;
+	mes "[^ff0000 Castillo Principal Geffen^000000 ]";
+	menu "^ff0000 Color Rojo^000000",red,"^00b0ff Color Azul^000000 ",blue,"^1dff00 Color verde^000000 ",green,"^ff7e00 Color Naranja ^000000 ",orange,"^ffffff Color Blanco ^000000 ",white," ^ff54f1 Color Rosa ^000000 ",rosa,"^FFAA00Color Amarillo^000000 ",Amarillo,"^8a0096Color Morado ^000000 ",Morado,"^009683 Color Verde Agua ^000000 ",Agua,"^723000 Cafe ^000000 ",Cafe;
+
+	red:
+		set .@color$,"0xff0000";
+		goto Lmessage;
+	blue:
+		set .@color$,"0x00b0ff";
+		goto Lmessage;
+	green:
+		set .@color$,"0x1dff00";
+		goto Lmessage;
+	white:
+		set .@color$,"0xffffff";
+		goto Lmessage;
+	orange:
+		set .@color$,"0xff7e00";
+		goto Lmessage;
+	Rosa:
+		set .@color$,"0xff54f1";
+		goto Lmessage;
+	Amarillo:
+		set .@color$,"0xFFAA00";
+		goto Lmessage;
+	Morado:
+		set .@color$,"0x8a0096";
+		goto Lmessage;
+	Agua:
+		set .@color$,"0x009683";
+		goto Lmessage;
+	Cafe:
+		set .@color$,"0x723000";
+		goto Lmessage;
+		
+Lmessage:
+	mes "Escribe el mensaje que deseas enviar.";
+	input $mensaje$;
+	next;
+	mes "Ahora enviaré el mensaje, gracias por usar este servicio.";
+	close2;
+	announce "["+strcharinfo(0)+"]: "+$mensaje$+"",0,.@color$;
+	end;
+	next;
+	close;
+sL_Zeny:
+	mes "[ GM Karel ]";
+	mes "Que no tienes el dinero? Es muy dificil gritar tan fuerte";
+	close;
+M_1:
+	mes "[ El GM ]";
+	mes "Vuelve cuando tengas el dinero suficiente. Que tengas un Buen dia.";
+	close;
+	end;
+no:
+	mes "Ok amigo cuando gustes manda un pm y te ayudamos a mandar el mensaje global";
+	close;
+}
