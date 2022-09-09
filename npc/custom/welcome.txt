@@ -24,7 +24,7 @@ OnTouch:
 		mes "Vengo desde tierras muy lejanas...";
 		next;
 		cutin "kafra_03",2;
-		announce (Sex?"Bienvenido":"Bienvenida")+" "+strcharinfo(0)+" a Tales of Elysea!",bc_all|bc_blue;
+		announce (Sex?"Bienvenido":"Bienvenida")+" "+strcharinfo(0)+" a Server Nombre!",bc_all|bc_blue;
 		mes "Asi que ^0080FF"+strcharinfo(0)+"^000000, eh?";
 		mes "Vaya, vaya...";
 		next;

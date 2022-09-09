@@ -6,7 +6,7 @@ OnPCLoginEvent:
 	if(#NoNew7T){
 		end;
 		}
-	announce "Bienvenid@ a Flow-Ro "+strcharinfo(0)+".",bc_all;
+	announce "Bienvenid@ a Server Name "+strcharinfo(0)+".",bc_all;
 	dispbottom "Aquí tienes tu Set de bienvenida :D!";
 	getitem 4142,1;
 	getitem 26072,1;
